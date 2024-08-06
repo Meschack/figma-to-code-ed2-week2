@@ -14,7 +14,9 @@ const config: Config = {
         sans: ['var(--font-archivo)']
       },
       backgroundImage: {
-        'banner-background': "url('/images/banner-background.png')"
+        'banner-background': "url('/images/banner-background.png')",
+        'first-collection': "url('/images/first-collection.png')",
+        'second-collection': "url('/images/second-collection.png')"
       },
       maxWidth: {
         vw: '100vw',
@@ -27,6 +29,7 @@ const config: Config = {
         18: '72px'
       },
       borderRadius: {
+        '4xl': '32px',
         52: '52px'
       },
       colors: {
