@@ -24,8 +24,9 @@ const config: Config = {
       borderRadius: { '4xl': '32px', 52: '52px' },
       colors: {
         'light-gray': '#E5E5E5',
-        gray: '#C3C3C3',
         'dark-gray': '#7E7E7E',
+        'pure-black': '#000000',
+        gray: '#C3C3C3',
         green: '#2D5C43',
         purple: '#393158',
         ocean: '#2A5259',

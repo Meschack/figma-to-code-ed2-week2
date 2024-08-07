@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { archivo, chillax } from '@/config/fonts'
+import { Footer } from '@/components/ui/footer'
+import { Header } from '@/components/ui/header'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,8 +16,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${archivo.variable} ${chillax.variable} font-sans`}>
-        {children}
+      <body
+        className={`${archivo.variable} ${chillax.variable} flex min-h-screen flex-col font-sans`}
+      >
+        <Header />
+
+        <main className='mt-10 flex grow flex-col justify-between md:mt-13 xl:mt-8'>
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   )

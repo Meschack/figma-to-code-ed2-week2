@@ -1,6 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Footer } from '@/components/ui/footer'
-import { Header } from '@/components/ui/header'
 import { HomeBanner } from '@/components/ui/home-banner'
 import { OurCollection } from '@/components/ui/our-collection'
 import { ProductCard } from '@/components/ui/product-card'
@@ -60,9 +58,7 @@ export default async function Home() {
 
   return (
     <>
-      <Header />
-
-      <HomeBanner className='mb-18 mt-10' />
+      <HomeBanner className='mb-18' />
 
       <Wrapper className='mb-24 space-y-18'>
         <p className='w-full text-center font-chillax text-xl font-semibold md:text-2xl xl:text-3xl'>
@@ -107,8 +103,6 @@ export default async function Home() {
 
         <OurCollection />
       </Wrapper>
-
-      <Footer />
     </>
   )
 }
