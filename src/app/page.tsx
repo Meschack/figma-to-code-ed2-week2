@@ -71,7 +71,7 @@ export default async function Home() {
             {categories.map((category) => (
               <Button
                 key={category.label}
-                variant='transparent'
+                variant={category.selected ? 'fill' : 'transparent'}
                 className='items-center gap-1 border-1.5 font-semibold'
               >
                 <span className='text-sm md:text-xl'>{category.label}</span>

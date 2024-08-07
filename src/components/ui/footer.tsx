@@ -66,8 +66,11 @@ export const Footer = () => {
                 <h3 className='text-base text-white'>{element.title}</h3>
 
                 <div className='flex flex-col gap-1 text-sm text-gray'>
-                  {element.links.map((link) => (
-                    <Link key={link.path} href={link.path}>
+                  {element.links.map((link, index) => (
+                    <Link
+                      key={`${element.title}-${link.path}-${index}`}
+                      href={link.path}
+                    >
                       {link.label}
                     </Link>
                   ))}

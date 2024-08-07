@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontSize: { 28: '28px', 42: ['42px', '44px'] },
+      fontSize: { 28: '28px', 42: ['42px', '44px'], tiny: ['10px', '12px'] },
       fontFamily: {
         archivo: ['var(--font-archivo)'],
         chillax: ['var(--font-chillax)'],

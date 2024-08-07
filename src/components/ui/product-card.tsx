@@ -5,6 +5,7 @@ import { PromoBadge } from './promo-badge'
 import placeholder from '@@/images/placeholder.png'
 import cart from '@@/icons/cart.svg'
 import { Button } from './button'
+import Link from 'next/link'
 
 interface Props {
   product: Product
@@ -38,6 +39,11 @@ export const ProductCard = ({ product }: Props) => {
             </Button>
           </div>
         </div>
+
+        <Link
+          className='absolute inset-0'
+          href={`/product/${encodeURIComponent(product.id)}`}
+        ></Link>
       </div>
 
       <div className='space-y-0.5 font-semibold'>
