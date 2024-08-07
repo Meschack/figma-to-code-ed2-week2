@@ -7,11 +7,13 @@ interface Props
     VariantProps<typeof buttonVariants> {}
 
 const buttonVariants = cva(
-  'rounded-full inline-flex items-center justify-center',
+  'rounded-full inline-flex items-center justify-center gap-1.5',
   {
     variants: {
       variant: {
-        fill: 'bg-black text-white'
+        fill: 'bg-black text-white',
+        transparent:
+          'bg-transparent text-black border hover:bg-black hover:text-white'
       },
       size: {
         default: 'h-11 px-5',

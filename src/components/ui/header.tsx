@@ -3,6 +3,7 @@ import { TrendingNews } from '@/components/ui/trending-news'
 import logo from '@@/icons/logo.svg'
 import user from '@@/icons/user.svg'
 import search from '@@/icons/search.svg'
+import cart from '@@/icons/cart-2.svg'
 import Link from 'next/link'
 import { Wrapper } from '@/components/ui/wrapper'
 import { ComponentProps } from 'react'
@@ -28,17 +29,22 @@ export const Header = ({ className, ...rest }: Props) => {
     <header className={cn(className)} {...rest}>
       <TrendingNews />
       <div className=''>
-        <Wrapper className='flex items-center justify-between border-b py-5'>
-          <ul className='flex items-center gap-4.5'>
+        <Wrapper className='flex items-center justify-between border-b border-light-gray py-5'>
+          <ul className='hidden items-center gap-4.5 xl:flex'>
             <li>Men</li>
             <li>Women</li>
             <li>Kids</li>
             <li>Collection</li>
           </ul>
 
+          <button className='flex flex-col gap-1 xl:hidden'>
+            <span className='h-0.5 w-5 bg-black'></span>
+            <span className='h-0.5 w-5 bg-black'></span>
+          </button>
+
           <Image src={logo} alt="Ballamas's logo" />
 
-          <div className='flex items-center gap-4.5'>
+          <div className='hidden items-center gap-4.5 xl:flex'>
             <nav>
               <ul className='flex items-center gap-4.5'>
                 {navLinks.map((link) => (
@@ -60,6 +66,11 @@ export const Header = ({ className, ...rest }: Props) => {
             <div>
               <Image src={search} alt='Search icon' />
             </div>
+          </div>
+
+          <div className='flex items-center gap-3 xl:hidden'>
+            <Image src={search} alt='Search icon' />
+            <Image src={cart} alt='Cart icon' />
           </div>
         </Wrapper>
       </div>

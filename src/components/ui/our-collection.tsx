@@ -18,20 +18,20 @@ export const OurCollection = ({}: Props) => {
         </p>
       </div>
 
-      <div className='grid grid-cols-3 gap-4 *:h-[446px] *:rounded-4xl *:bg-cover *:bg-center'>
-        <div className='flex items-end justify-center bg-first-collection pb-6'>
+      <div className='flex flex-col-reverse gap-4 *:h-[446px] *:rounded-4xl *:bg-cover *:bg-center md:flex-row md:*:basis-1/2'>
+        <div className='flex items-end justify-center bg-first-collection pb-6 xl:basis-1/3'>
           <Button className='bg-white uppercase text-black'>
             Learn More <Image src={arrow} alt='Arrow up' />
           </Button>
         </div>
 
-        <div className='col-span-2 overflow-hidden bg-second-collection'>
+        <div className='overflow-hidden bg-second-collection xl:basis-2/3'>
           <div className='flex h-full w-full flex-col items-center justify-center bg-[#000000]/20 *:w-fit'>
-            <p className='text-stroke text-stroke-blue-500 bg-gradient-to-r from-white to-white bg-clip-text text-5xl font-extrabold uppercase tracking-widest text-transparent'>
+            <p className='text-center text-xl font-extrabold uppercase text-white md:text-3xl xl:text-5xl'>
               Classic men
             </p>
 
-            <p className='text-white'>
+            <p className='text-sm text-white xl:text-lg'>
               We're changing the way things get made.
             </p>
           </div>

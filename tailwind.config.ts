@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontSize: { 28: '28px', 42: ['42px', '44px'] },
       fontFamily: {
         archivo: ['var(--font-archivo)'],
         chillax: ['var(--font-chillax)'],
@@ -18,20 +19,9 @@ const config: Config = {
         'first-collection': "url('/images/first-collection.png')",
         'second-collection': "url('/images/second-collection.png')"
       },
-      maxWidth: {
-        vw: '100vw',
-        desktop: '1200px',
-        tablet: '676px'
-      },
-      spacing: {
-        4.5: '18px',
-        13: '52px',
-        18: '72px'
-      },
-      borderRadius: {
-        '4xl': '32px',
-        52: '52px'
-      },
+      maxWidth: { vw: '100vw', desktop: '1200px', tablet: '676px' },
+      spacing: { 4.5: '18px', 13: '52px', 18: '72px' },
+      borderRadius: { '4xl': '32px', 52: '52px' },
       colors: {
         'light-gray': '#E5E5E5',
         gray: '#C3C3C3',
@@ -41,6 +31,9 @@ const config: Config = {
         ocean: '#2A5259',
         olive: '#706947',
         black: '#1D1D1D'
+      },
+      borderWidth: {
+        1.5: '1.5px'
       }
     }
   },

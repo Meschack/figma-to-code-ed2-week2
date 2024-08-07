@@ -38,7 +38,7 @@ export const Footer = () => {
   return (
     <div className='bg-black'>
       <Wrapper className='space-y-8 py-13'>
-        <div className='flex w-full justify-between'>
+        <div className='flex w-full flex-col justify-between gap-5 xl:flex-row'>
           <div className='space-y-5'>
             <Logo theme='dark' />
 
@@ -51,7 +51,7 @@ export const Footer = () => {
               <input
                 type='email'
                 placeholder='Your email'
-                className='flex-1 rounded-full border bg-transparent px-3.5 py-3 text-xs text-white'
+                className='max-w-80 flex-1 rounded-full border bg-transparent px-3.5 py-3 text-xs text-white'
               />
 
               <button className='rounded-full bg-white px-5 py-3 text-sm text-black'>
