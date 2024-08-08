@@ -1,6 +1,5 @@
 import Image, { StaticImageData } from 'next/image'
 import { TrendingNews } from '@/components/ui/trending-news'
-import logo from '@@/icons/logo.svg'
 import user from '@@/icons/user.svg'
 import search from '@@/icons/search.svg'
 import cart from '@@/icons/cart-2.svg'
@@ -8,6 +7,7 @@ import Link from 'next/link'
 import { Wrapper } from '@/components/ui/wrapper'
 import { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
+import { Logo } from './logo'
 
 interface NavLink {
   path: string
@@ -42,7 +42,7 @@ export const Header = ({ className, ...rest }: Props) => {
             <span className='h-0.5 w-5 bg-black'></span>
           </button>
 
-          <Image src={logo} alt="Ballamas's logo" />
+          <Logo />
 
           <div className='hidden items-center gap-4.5 xl:flex'>
             <nav>

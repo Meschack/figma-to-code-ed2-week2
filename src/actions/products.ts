@@ -1,6 +1,9 @@
 'use server'
 
+import { Product, ProductResponse } from '@/types/products'
 import request, { gql } from 'graphql-request'
+
+const BASE_URL = 'https://mock.shop/api'
 
 const GET_PRODUCT_DETAILS = gql`
   query getProduct($id: ID!) {
@@ -8,6 +11,11 @@ const GET_PRODUCT_DETAILS = gql`
       id
       title
       description
+      featuredImage {
+        id
+        url
+        altText
+      }
       options {
         id
         name
@@ -22,6 +30,11 @@ const GET_PRODUCT_DETAILS = gql`
               name
               value
             }
+            image {
+              altText
+              url
+              id
+            }
             price {
               amount
               currencyCode
@@ -30,12 +43,29 @@ const GET_PRODUCT_DETAILS = gql`
           }
         }
       }
-      images(first: 5) {
+    }
+  }
+`
+
+const GET_PRODUCT_RECOMMANDATIONS = gql`
+  query getRecommandations($id: ID!) {
+    productRecommendations(productId: $id, intent: RELATED) {
+      id
+      title
+      description
+      featuredImage {
+        id
+        url
+        altText
+      }
+      isGiftCard
+      variants(first: 3) {
         edges {
           node {
-            id
-            url
-            altText
+            price {
+              amount
+              currencyCode
+            }
           }
         }
       }
@@ -46,9 +76,11 @@ const GET_PRODUCT_DETAILS = gql`
 export const getProduct = async (id: string) => {
   try {
     try {
-      const data = await request('https://mock.shop/api', GET_PRODUCT_DETAILS, {
-        id
-      })
+      const data = await request<ProductResponse>(
+        BASE_URL,
+        GET_PRODUCT_DETAILS,
+        { id }
+      )
 
       return data
     } catch (error) {
@@ -56,4 +88,21 @@ export const getProduct = async (id: string) => {
       throw error
     }
   } catch (error) {}
+}
+
+export const getRecommendations = async (productId: string) => {
+  try {
+    const data = await request<{ productRecommendations: Product[] }>(
+      BASE_URL,
+      GET_PRODUCT_RECOMMANDATIONS,
+      { id: productId }
+    )
+
+    return data
+  } catch (error) {
+    if (error instanceof Error)
+      console.error('Error fetching product recommendations :', error.message)
+
+    throw error
+  }
 }

@@ -19,7 +19,9 @@ const getProducts = async () => {
               featuredImage {
                 id
                 url
+                altText
               }
+              isGiftCard
               variants(first: 3) {
                 edges {
                   node {

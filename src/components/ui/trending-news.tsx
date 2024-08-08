@@ -7,7 +7,7 @@ export const TrendingNews = ({
 }: Props) => {
   return (
     <div className='bg-black px-2.5 py-4 text-white'>
-      <p className='text-tiny mx-auto w-fit text-center md:text-xs'>
+      <p className='mx-auto w-fit text-center text-tiny md:text-xs'>
         {message}
       </p>
     </div>

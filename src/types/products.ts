@@ -6,6 +6,7 @@ interface Price {
 interface FeaturedImage {
   id: string
   url: string
+  altText: string | null
 }
 
 interface ProductEdge {
@@ -38,12 +39,7 @@ interface ProductVariant {
   selectedOptions: SelectedOption[]
   price: Price
   availableForSale: boolean
-}
-
-interface ProductImage {
-  id: string
-  url: string
-  altText: string | null
+  image?: FeaturedImage
 }
 
 export interface Product {
@@ -51,11 +47,11 @@ export interface Product {
   title: string
   description: string
   featuredImage: FeaturedImage
+  isGiftCard: boolean
   options: ProductOption[]
   variants: { edges: Array<{ node: ProductVariant }> }
-  images: { edges: Array<{ node: ProductImage }> }
 }
 
-interface ProductResponse {
+export interface ProductResponse {
   product: Product
 }

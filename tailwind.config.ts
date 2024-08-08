@@ -20,7 +20,7 @@ const config: Config = {
         'second-collection': "url('/images/second-collection.png')"
       },
       maxWidth: { vw: '100vw', desktop: '1200px', tablet: '676px' },
-      spacing: { 4.5: '18px', 13: '52px', 18: '72px' },
+      spacing: { 4.5: '18px', 5.5: '22px', 13: '52px', 18: '72px' },
       borderRadius: { '4xl': '32px', 52: '52px' },
       colors: {
         'light-gray': '#E5E5E5',
@@ -38,6 +38,6 @@ const config: Config = {
       }
     }
   },
-  plugins: []
+  plugins: [require('tailwindcss-animate')]
 }
 export default config

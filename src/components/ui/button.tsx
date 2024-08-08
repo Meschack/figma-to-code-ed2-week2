@@ -7,7 +7,7 @@ interface Props
     VariantProps<typeof buttonVariants> {}
 
 const buttonVariants = cva(
-  'rounded-full inline-flex items-center justify-center gap-1.5',
+  'rounded-full inline-flex items-center justify-center gap-1.5 disabled:opacity-60',
   {
     variants: {
       variant: {
