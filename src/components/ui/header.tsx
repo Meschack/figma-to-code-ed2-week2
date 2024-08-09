@@ -8,6 +8,7 @@ import { Wrapper } from '@/components/ui/wrapper'
 import { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 import { Logo } from './logo'
+import { cookies } from 'next/headers'
 
 interface NavLink {
   path: string
@@ -15,16 +16,17 @@ interface NavLink {
   icon?: StaticImageData
 }
 
-const navLinks: NavLink[] = [
+const staticNavLinks: NavLink[] = [
   { path: '/shop', label: 'Shop' },
   { path: '/about', label: 'About Us' },
-  { path: '/account', label: 'Account', icon: user },
-  { path: '/account', label: 'Cart(0)' }
+  { path: '/account', label: 'Account', icon: user }
 ]
 
 interface Props extends ComponentProps<'header'> {}
 
 export const Header = ({ className, ...rest }: Props) => {
+  const cartQuantity = cookies().get('cart-quantity')?.value
+
   return (
     <header className={cn(className)} {...rest}>
       <TrendingNews />
@@ -47,7 +49,7 @@ export const Header = ({ className, ...rest }: Props) => {
           <div className='hidden items-center gap-4.5 xl:flex'>
             <nav>
               <ul className='flex items-center gap-4.5'>
-                {navLinks.map((link) => (
+                {staticNavLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.path}
@@ -60,6 +62,11 @@ export const Header = ({ className, ...rest }: Props) => {
                     </Link>
                   </li>
                 ))}
+                <li key='/cart'>
+                  <Link href='/cart' className='flex items-center gap-1.5'>
+                    Cart ({cartQuantity ?? 0})
+                  </Link>
+                </li>
               </ul>
             </nav>
 

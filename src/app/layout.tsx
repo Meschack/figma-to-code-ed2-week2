@@ -3,6 +3,7 @@ import './globals.css'
 import { archivo, chillax } from '@/config/fonts'
 import { Footer } from '@/components/ui/footer'
 import { Header } from '@/components/ui/header'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,6 +26,8 @@ export default function RootLayout({
           {children}
           <Footer />
         </main>
+
+        <Toaster richColors />
       </body>
     </html>
   )

@@ -1,9 +1,8 @@
 'use server'
 
+import { BASE_URL } from '@/config/urls/api'
 import { Product, ProductResponse } from '@/types/products'
 import request, { gql } from 'graphql-request'
-
-const BASE_URL = 'https://mock.shop/api'
 
 const GET_PRODUCT_DETAILS = gql`
   query getProduct($id: ID!) {
@@ -75,19 +74,15 @@ const GET_PRODUCT_RECOMMANDATIONS = gql`
 
 export const getProduct = async (id: string) => {
   try {
-    try {
-      const data = await request<ProductResponse>(
-        BASE_URL,
-        GET_PRODUCT_DETAILS,
-        { id }
-      )
+    const data = await request<ProductResponse>(BASE_URL, GET_PRODUCT_DETAILS, {
+      id
+    })
 
-      return data
-    } catch (error) {
-      console.error('Error fetching product details:', error)
-      throw error
-    }
-  } catch (error) {}
+    return data
+  } catch (error) {
+    console.error('Error fetching product details:', error)
+    throw error
+  }
 }
 
 export const getRecommendations = async (productId: string) => {

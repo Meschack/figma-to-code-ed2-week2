@@ -5,6 +5,9 @@ import { Button } from './button'
 import { CustomImage } from './custom-image'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { create } from '@/actions/cart'
+import { toast } from 'sonner'
+import { LoadingButton } from './loading-button'
 
 interface Props {
   product: Product
@@ -13,6 +16,7 @@ interface Props {
 interface State {
   selectedVariant?: Product['variants']['edges'][number]['node']
   selectedOptions: Product['variants']['edges'][number]['node']['selectedOptions']
+  cartLoader?: boolean
 }
 
 export const ProductDetails = ({ product }: Props) => {
@@ -35,21 +39,34 @@ export const ProductDetails = ({ product }: Props) => {
       )
     )
 
-    /* const variant = product.variants.edges.find((edge) =>
-      edge.node.selectedOptions.find(
-        (el) => el.name === name && el.value === value
-      )
-    ) */
-
     setState({
       selectedVariant: variant?.node,
       selectedOptions: newSelectedOptions
     })
   }
 
+  const addToCart = async (variant: string | undefined) => {
+    if (!variant) {
+      toast.warning('Veuillez sélectionnez une variante valide !')
+
+      return
+    }
+
+    setState((prev) => ({ ...prev, cartLoader: true }))
+    try {
+      await create(variant)
+
+      toast.success('Le produit a bien été ajouté au panier !')
+    } catch (error) {
+      toast.error("Erreur lors de l'ajout du produit au panier !")
+    } finally {
+      setState((prev) => ({ ...prev, cartLoader: false }))
+    }
+  }
+
   return (
     <div className='grid gap-8 md:gap-10 xl:grid-cols-2'>
-      <div className='xl:min-h-none relative min-h-[650px] overflow-hidden rounded-4xl'>
+      <div className='relative min-h-[650px] overflow-hidden rounded-4xl xl:min-h-min'>
         <CustomImage
           alt={
             state.selectedVariant?.image?.url ||
@@ -62,6 +79,7 @@ export const ProductDetails = ({ product }: Props) => {
               : product.featuredImage.url
           }
           fill
+          priority
           className='object-cover object-center'
         />
       </div>
@@ -115,9 +133,15 @@ export const ProductDetails = ({ product }: Props) => {
 
           <div className='grid grid-cols-2 gap-3.5 *:text-sm *:font-semibold *:uppercase'>
             <Button disabled={!state.selectedVariant}>Buy now</Button>
-            <Button variant='transparent' disabled={!state.selectedVariant}>
+
+            <LoadingButton
+              loading={!state.selectedVariant}
+              disabled={!state.selectedVariant || state.cartLoader}
+              variant='transparent'
+              onClick={() => addToCart(state.selectedVariant?.id)}
+            >
               Add to cart
-            </Button>
+            </LoadingButton>
           </div>
         </div>
 

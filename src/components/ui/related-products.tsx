@@ -77,13 +77,13 @@ export const RelatedProducts = ({ product }: Props) => {
     )
   }
 
-  return products ? (
-    <div className='no-scrollbar flex flex-col gap-3.5 sm:flex-row sm:overflow-x-auto sm:overflow-y-hidden'>
-      {products.map((product) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
-    </div>
-  ) : (
-    <p>Erreur lors du chargement des produits</p>
+  return (
+    products && (
+      <div className='no-scrollbar flex flex-col gap-3.5 sm:flex-row sm:overflow-x-auto sm:overflow-y-hidden'>
+        {products.map((product) => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+      </div>
+    )
   )
 }
