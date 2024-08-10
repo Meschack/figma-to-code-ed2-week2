@@ -18,7 +18,7 @@ export const OurCollection = ({}: Props) => {
         </p>
       </div>
 
-      <div className='flex flex-col-reverse gap-4 *:h-[446px] *:rounded-4xl *:bg-cover *:bg-center md:flex-row md:*:basis-1/2'>
+      <div className='flex flex-col-reverse gap-4 *:h-[446px] *:rounded-4xl *:bg-dark-gray *:bg-cover *:bg-center md:flex-row md:*:basis-1/2'>
         <div className='flex items-end justify-center bg-first-collection pb-6 xl:basis-1/3'>
           <Button className='bg-white uppercase text-black'>
             Learn More <Image src={arrow} alt='Arrow up' />

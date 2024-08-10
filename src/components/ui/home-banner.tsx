@@ -11,7 +11,7 @@ export const HomeBanner = ({ className, ...rest }: Props) => {
   return (
     <Wrapper
       className={cn(
-        'space-y-11 rounded-52 bg-banner-background bg-cover bg-center px-5 py-10 *:mx-auto xl:px-20 xl:py-24',
+        'space-y-11 rounded-52 bg-dark-gray bg-banner-background bg-cover bg-center px-5 py-10 *:mx-auto xl:px-20 xl:py-24',
         className
       )}
       {...rest}

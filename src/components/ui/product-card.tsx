@@ -22,6 +22,7 @@ export const ProductCard = ({ product }: Props) => {
           alt={
             product.featuredImage.altText || `${product.title} featured image`
           }
+          className='duration-300 group-hover:scale-105'
         />
 
         <div className='absolute flex size-full flex-col justify-between p-5 text-sm group-hover:bg-[#000000]/20'>
