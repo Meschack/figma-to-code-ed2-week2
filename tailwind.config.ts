@@ -33,9 +33,8 @@ const config: Config = {
         olive: '#706947',
         black: '#1D1D1D'
       },
-      borderWidth: {
-        1.5: '1.5px'
-      }
+      borderWidth: { 1.5: '1.5px' },
+      gap: { 10.5: '42px' }
     }
   },
   plugins: [require('tailwindcss-animate')]
