@@ -25,7 +25,7 @@ const Page = async () => {
   const { cart } = await get(cartId)
 
   return (
-    <Wrapper className='grid w-full grid-cols-4 gap-10.5 md:grid-cols-8 xl:grid-cols-12'>
+    <Wrapper className='mb-16 grid w-full grid-cols-4 gap-10.5 md:grid-cols-8 xl:mb-28 xl:grid-cols-12'>
       <div className='col-span-full xl:col-span-9'>
         <div className='flex items-center justify-between'>
           <h1 className='font-chillax text-2xl font-semibold'>

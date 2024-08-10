@@ -1,5 +1,5 @@
-export interface MinimalCart {
-  cartCreate: { cart: { id: string; totalQuantity: number } }
+export type MinimalCart<Key extends 'cartCreate' | 'cartLinesAdd'> = {
+  [name in Key]: { cart: { id: string; totalQuantity: number } }
 }
 
 export interface Cart {

@@ -58,14 +58,21 @@ const GET_CART = gql`
 `
 
 const CREATE_CART = gql`
-  mutation CartCreate($variant: ID!, $quantity: Int!) {
-    cartCreate(
-      input: { lines: [{ quantity: $quantity, merchandiseId: $variant }] }
-    ) {
+  mutation CartCreate($variant: ID!) {
+    cartCreate(input: { lines: [{ merchandiseId: $variant }] }) {
       cart {
         id
-        createdAt
-        updatedAt
+        totalQuantity
+      }
+    }
+  }
+`
+
+const ADD_LINE = gql`
+  mutation cartLinesAdd($cart: ID!, $variant: ID!) {
+    cartLinesAdd(cartId: $cart, lines: [{ merchandiseId: $variant }]) {
+      cart {
+        id
         totalQuantity
       }
     }
@@ -75,6 +82,9 @@ const CREATE_CART = gql`
 const UPDATE_LINE_QUANTITY = gql`
   mutation cartLinesUpdate($cart: ID!, $line: ID!, $quantity: Int) {
     cartLinesUpdate(cartId: $cart, lines: { id: $line, quantity: $quantity }) {
+      cart {
+        totalQuantity
+      }
       userErrors {
         message
       }
@@ -96,12 +106,28 @@ const REMOVE_LINE = gql`
   }
 `
 
+export const addToCart = async (variant: string) => {
+  try {
+    const cartId = cookies().get('cart')
+
+    const response = await (cartId
+      ? addLine(cartId.value, variant)
+      : create(variant))
+
+    return response
+  } catch (error) {
+    if (error instanceof ClientError) logClientError(error)
+    throw error
+  }
+}
+
 export const create = async (variant: string) => {
   try {
-    const response = await request<MinimalCart>(BASE_URL, CREATE_CART, {
-      variant,
-      quantity: 1
-    })
+    const response = await request<MinimalCart<'cartCreate'>>(
+      BASE_URL,
+      CREATE_CART,
+      { variant }
+    )
 
     const oneWeek = 7 * 24 * 60 * 60 * 1000
 
@@ -119,8 +145,7 @@ export const create = async (variant: string) => {
 
     return response.cartCreate.cart
   } catch (error) {
-    console.log(error)
-
+    if (error instanceof ClientError) logClientError(error)
     throw error
   }
 }
@@ -131,8 +156,7 @@ export const get = async (id: string) => {
 
     return data
   } catch (error) {
-    console.error('Error fetching product details :', error)
-
+    if (error instanceof ClientError) logClientError(error)
     throw error
   }
 }
@@ -145,17 +169,61 @@ export const updateLineQuantity = async (
   if (quantity > 0) {
     try {
       const data = await request<{
-        cartLinesUpdate: { userErrors: { message: string }[] }
+        cartLinesUpdate: {
+          userErrors: { message: string }[]
+          cart: { totalQuantity: number }
+        }
       }>(BASE_URL, UPDATE_LINE_QUANTITY, {
         cart,
         line,
         quantity
       })
 
-      if (!data.cartLinesUpdate.userErrors.length) revalidatePath('/cart')
+      if (!data.cartLinesUpdate.userErrors.length) {
+        cookies().set(
+          'cart-quantity',
+          data.cartLinesUpdate.cart.totalQuantity.toString()
+        )
+
+        revalidatePath('/cart')
+
+        revalidatePath('/', 'layout')
+      }
 
       return { success: !data.cartLinesUpdate.userErrors.length }
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof ClientError) logClientError(error)
+      throw error
+    }
+  }
+}
+
+export const addLine = async (cart: string, variant: string) => {
+  try {
+    const response = await request<MinimalCart<'cartLinesAdd'>>(
+      BASE_URL,
+      ADD_LINE,
+      { variant, cart }
+    )
+
+    const oneWeek = 7 * 24 * 60 * 60 * 1000
+
+    cookies().set('cart', response.cartLinesAdd.cart.id, {
+      expires: Date.now() + oneWeek
+    })
+
+    cookies().set(
+      'cart-quantity',
+      response.cartLinesAdd.cart.totalQuantity.toString(),
+      { expires: Date.now() + oneWeek }
+    )
+
+    revalidatePath('/', 'layout')
+
+    return response.cartLinesAdd.cart
+  } catch (error) {
+    if (error instanceof ClientError) logClientError(error)
+    throw error
   }
 }
 
@@ -180,5 +248,6 @@ export const removeCartLine = async (cart: string, line: string) => {
     return { success: !data.cartLinesRemove.userErrors.length }
   } catch (error) {
     if (error instanceof ClientError) logClientError(error)
+    throw error
   }
 }

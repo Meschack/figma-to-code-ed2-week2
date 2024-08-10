@@ -8,7 +8,7 @@ interface Props {
 
 export const OrderSummary = ({ cost }: Props) => {
   return (
-    <div className='col-span-full space-y-4 rounded-xl border border-light-gray px-6 py-4 md:col-span-4 xl:col-span-3'>
+    <div className='col-span-full h-fit space-y-4 rounded-xl border border-light-gray px-6 py-4 md:col-span-4 xl:col-span-3'>
       <h2>Order summary</h2>
 
       <div className='space-y-3'>

@@ -5,7 +5,7 @@ import { Button } from './button'
 import { CustomImage } from './custom-image'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { create } from '@/actions/cart'
+import { addToCart } from '@/actions/cart'
 import { toast } from 'sonner'
 import { LoadingButton } from './loading-button'
 
@@ -45,7 +45,7 @@ export const ProductDetails = ({ product }: Props) => {
     })
   }
 
-  const addToCart = async (variant: string | undefined) => {
+  const addVariantToCart = async (variant: string | undefined) => {
     if (!variant) {
       toast.warning('Veuillez sélectionnez une variante valide !')
 
@@ -54,7 +54,7 @@ export const ProductDetails = ({ product }: Props) => {
 
     setState((prev) => ({ ...prev, cartLoader: true }))
     try {
-      await create(variant)
+      await addToCart(variant)
 
       toast.success('Le produit a bien été ajouté au panier !')
     } catch (error) {
@@ -138,7 +138,7 @@ export const ProductDetails = ({ product }: Props) => {
               loading={!state.selectedVariant}
               disabled={!state.selectedVariant || state.cartLoader}
               variant='transparent'
-              onClick={() => addToCart(state.selectedVariant?.id)}
+              onClick={() => addVariantToCart(state.selectedVariant?.id)}
             >
               Add to cart
             </LoadingButton>
