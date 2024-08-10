@@ -227,14 +227,14 @@ export const addLine = async (cart: string, variant: string) => {
   }
 }
 
-export const removeCartLine = async (cart: string, line: string) => {
+export const removeCartLine = async (cart: string, lines: string[]) => {
   try {
     const data = await request<{
       cartLinesRemove: {
         cart: { totalQuantity: number }
         userErrors: { message: string }[]
       }
-    }>(BASE_URL, REMOVE_LINE, { cart, lineIds: [line] })
+    }>(BASE_URL, REMOVE_LINE, { cart, lineIds: lines })
 
     if (!data.cartLinesRemove.userErrors.length) {
       revalidatePath('/cart')

@@ -6,8 +6,8 @@ import { cookies } from 'next/headers'
 
 import { Separator } from '@/components/ui/separator'
 import { CustomImage } from '@/components/ui/custom-image'
-import { Trash } from '@/components/icons/trash'
 import { ProductLineActions } from '@/components/ui/product-line-actions'
+import { CartClearButton } from '@/components/ui/cart-clear-button'
 
 const Page = async () => {
   const cartId = cookies().get('cart')?.value
@@ -32,11 +32,10 @@ const Page = async () => {
             Cart ({cart.lines.edges.length})
           </h1>
 
-          <button className='inline-flex items-center space-x-1 rounded-full bg-[#E5E5E5]/50 p-2 text-dark-gray'>
-            <Trash className='*:text-dark-gray' />
-
-            <span>Clear Cart</span>
-          </button>
+          <CartClearButton
+            cart={cart.id}
+            linesIds={cart.lines.edges.map((edge) => edge.node.id)}
+          />
         </div>
 
         <div role='table' className='space-y-5'>

@@ -31,8 +31,11 @@ export const ProductLineActions = ({ node, cart }: Props) => {
       try {
         const response = await updateLineQuantity(cart, node.id, quantity)
 
-        if (!response?.success) toast.error('Une erreur est survenue !')
+        if (!response?.success)
+          toast.error('Une erreur est survenue !', { id: 'cart-product-line' })
       } catch (error) {
+        toast.error('Une erreur est survenue !', { id: 'cart-product-line' })
+
         console.log(error)
       } finally {
         setState((prev) => ({ ...prev, loading: false }))
@@ -47,10 +50,13 @@ export const ProductLineActions = ({ node, cart }: Props) => {
     setState((prev) => ({ ...prev, loading: true }))
 
     try {
-      const response = await removeCartLine(cart, node.id)
+      const response = await removeCartLine(cart, [node.id])
 
-      if (!response?.success) toast.error('Une erreur est survenue !')
+      if (!response?.success)
+        toast.error('Une erreur est survenue !', { id: 'cart-product-line' })
     } catch (error) {
+      toast.error('Une erreur est survenue !', { id: 'cart-product-line' })
+
       console.log(error)
     } finally {
       setState((prev) => ({ ...prev, loading: false }))
