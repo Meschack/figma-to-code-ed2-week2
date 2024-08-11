@@ -9,9 +9,7 @@ const Page = () => {
         <Image src={circleCheck} alt='Circle check' />
 
         <div className='space-y-1 *:mx-auto *:w-fit'>
-          <h1 className='text-base font-semibold md:text-lg'>
-            Thanks for your order !
-          </h1>
+          <h1 className='text-base font-semibold md:text-lg'>Thanks for your order !</h1>
 
           <p className='text-xs font-medium text-dark-gray'>
             The order confirmation has been sent to johndoe@gmail.com

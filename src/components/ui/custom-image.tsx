@@ -5,12 +5,7 @@ import placeholderImage from '@@/images/placeholder.png'
 
 interface Props extends ComponentProps<typeof Image> {}
 
-export const CustomImage = ({
-  placeholder,
-  blurDataURL,
-  alt,
-  ...rest
-}: Props) => {
+export const CustomImage = ({ placeholder, blurDataURL, alt, ...rest }: Props) => {
   return (
     <Image
       alt={alt ?? 'Generic alternative text'}

@@ -8,10 +8,7 @@ export const Separator = ({ orientation = 'horizontal' }: Props) => {
   return (
     <div
       role='separator'
-      className={cn(
-        'bg-light-gray',
-        orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]'
-      )}
+      className={cn('bg-light-gray', orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]')}
     ></div>
   )
 }

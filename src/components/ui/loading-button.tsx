@@ -9,22 +9,10 @@ interface Props extends ComponentProps<typeof Button> {
 }
 
 export const LoadingButton = (props: Props) => {
-  const {
-    loading,
-    loadingText = 'En cours',
-    className,
-    icon,
-    children,
-    ...rest
-  } = props
+  const { loading, loadingText = 'En cours', className, icon, children, ...rest } = props
 
   return (
-    <Button
-      disabled={loading}
-      type='submit'
-      className={cn(className)}
-      {...rest}
-    >
+    <Button disabled={loading} type='submit' className={cn(className)} {...rest}>
       {loading ? (
         <>
           <Spinner />
@@ -47,14 +35,7 @@ const Spinner = () => (
     fill='none'
     viewBox='0 0 24 24'
   >
-    <circle
-      className='opacity-25'
-      cx='12'
-      cy='12'
-      r='10'
-      stroke='currentColor'
-      strokeWidth='4'
-    ></circle>
+    <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
     <path
       className='opacity-75'
       fill='currentColor'

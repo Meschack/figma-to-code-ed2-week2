@@ -23,12 +23,9 @@ export const ErrorComponent = ({ description, label, title, to }: Props) => (
       />
 
       <div className='flex flex-col items-center gap-5 text-center'>
-        <h2 className='text-2xl font-bold text-black dark:text-white'>
-          {title ?? 'Une erreur est survenue'}
-        </h2>
+        <h2 className='text-2xl font-bold text-black dark:text-white'>{title ?? 'Une erreur est survenue'}</h2>
         <p className='font-medium'>
-          {description ??
-            "La page que vous recherchez a été déplacée, supprimée ou n'existe pas."}
+          {description ?? "La page que vous recherchez a été déplacée, supprimée ou n'existe pas."}
         </p>
 
         <a

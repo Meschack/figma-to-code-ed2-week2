@@ -28,14 +28,9 @@ const Page = async () => {
     <Wrapper className='mb-16 grid w-full grid-cols-4 gap-10.5 md:grid-cols-8 xl:mb-28 xl:grid-cols-12'>
       <div className='col-span-full xl:col-span-9'>
         <div className='flex items-center justify-between'>
-          <h1 className='font-chillax text-2xl font-semibold'>
-            Cart ({cart.lines.edges.length})
-          </h1>
+          <h1 className='font-chillax text-2xl font-semibold'>Cart ({cart.lines.edges.length})</h1>
 
-          <CartClearButton
-            cart={cart.id}
-            linesIds={cart.lines.edges.map((edge) => edge.node.id)}
-          />
+          <CartClearButton cart={cart.id} linesIds={cart.lines.edges.map(edge => edge.node.id)} />
         </div>
 
         <div role='table' className='space-y-5'>
@@ -64,17 +59,11 @@ const Page = async () => {
                     />
 
                     <div className='flex flex-col gap-0.5'>
-                      <span className='text-sm font-semibold text-black'>
-                        {node.merchandise.product.title}
-                      </span>
+                      <span className='text-sm font-semibold text-black'>{node.merchandise.product.title}</span>
                       <span className='text-xs font-medium text-dark-gray'>
-                        {node.merchandise.selectedOptions
-                          .map((option) => option.value)
-                          .join(' - ')}
+                        {node.merchandise.selectedOptions.map(option => option.value).join(' - ')}
                       </span>
-                      <span className='text-sm font-semibold text-black'>
-                        ${node.merchandise.price.amount}
-                      </span>
+                      <span className='text-sm font-semibold text-black'>${node.merchandise.price.amount}</span>
                     </div>
                   </div>
 
@@ -82,10 +71,7 @@ const Page = async () => {
                     <ProductLineActions node={node} cart={cart.id} />
 
                     <span className='text-sm font-semibold text-black'>
-                      $
-                      {(+node.merchandise.price.amount * node.quantity).toFixed(
-                        2
-                      )}
+                      ${(+node.merchandise.price.amount * node.quantity).toFixed(2)}
                     </span>
                   </div>
                 </div>

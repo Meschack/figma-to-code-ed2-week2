@@ -4,14 +4,7 @@ interface IconProps extends ComponentPropsWithoutRef<'svg'> {}
 
 export const Icons = {
   card: (props: IconProps) => (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      {...props}
-    >
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path
         d='M1.6665 9.99998C1.6665 7.05208 1.6665 5.57812 2.54384 4.59406C2.68416 4.43667 2.83882 4.2911 3.00605 4.15904C4.05161 3.33331 5.61769 3.33331 8.74984 3.33331H11.2498C14.382 3.33331 15.9481 3.33331 16.9936 4.15904C17.1608 4.2911 17.3155 4.43667 17.4558 4.59406C18.3332 5.57812 18.3332 7.05208 18.3332 9.99998C18.3332 12.9479 18.3332 14.4218 17.4558 15.4059C17.3155 15.5633 17.1608 15.7088 16.9936 15.8409C15.9481 16.6666 14.382 16.6666 11.2498 16.6666H8.74984C5.61769 16.6666 4.05161 16.6666 3.00605 15.8409C2.83882 15.7088 2.68416 15.5633 2.54384 15.4059C1.6665 14.4218 1.6665 12.9479 1.6665 9.99998Z'
         stroke='currentColor'
@@ -35,22 +28,11 @@ export const Icons = {
         strokeLinecap='round'
         strokeLinejoin='round'
       />
-      <path
-        d='M1.6665 7.5H18.3332'
-        stroke='currentColor'
-        strokeWidth='1.5'
-        strokeLinejoin='round'
-      />
+      <path d='M1.6665 7.5H18.3332' stroke='currentColor' strokeWidth='1.5' strokeLinejoin='round' />
     </svg>
   ),
   twitter: (props: IconProps) => (
-    <svg
-      {...props}
-      height='23'
-      viewBox='0 0 1200 1227'
-      width='23'
-      xmlns='http://www.w3.org/2000/svg'
-    >
+    <svg {...props} height='23' viewBox='0 0 1200 1227' width='23' xmlns='http://www.w3.org/2000/svg'>
       <path d='M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z' />
     </svg>
   ),
@@ -64,10 +46,7 @@ export const Icons = {
   ),
   radix: (props: IconProps) => (
     <svg viewBox='0 0 25 25' fill='none' {...props}>
-      <path
-        d='M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z'
-        fill='currentcolor'
-      ></path>
+      <path d='M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z' fill='currentcolor'></path>
       <path d='M12 0H4V8H12V0Z' fill='currentcolor'></path>
       <path
         d='M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z'

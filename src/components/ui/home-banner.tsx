@@ -19,9 +19,7 @@ export const HomeBanner = ({ className, ...rest }: Props) => {
       <div className='flex w-fit flex-col items-center gap-4.5'>
         <div className='flex items-center gap-3'>
           <div className='h-[0.5px] w-16 bg-white'></div>
-          <span className='whitespace-nowrap text-xs md:text-sm'>
-            We bring new fashion to the world
-          </span>
+          <span className='whitespace-nowrap text-xs md:text-sm'>We bring new fashion to the world</span>
           <div className='h-[0.5px] w-16 bg-white'></div>
         </div>
 
@@ -30,8 +28,8 @@ export const HomeBanner = ({ className, ...rest }: Props) => {
             DISCOVER THE LATEST FASHION TRENDS HERE
           </h1>
           <p className='text-center text-xs md:text-sm lg:w-1/2 xl:text-base'>
-            Discover a world of fashion with our meticulously curated outfits.
-            Shop now to update your wardrobe with chic and stylish outfits.
+            Discover a world of fashion with our meticulously curated outfits. Shop now to update your wardrobe with
+            chic and stylish outfits.
           </p>
         </div>
       </div>

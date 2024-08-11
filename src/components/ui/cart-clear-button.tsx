@@ -21,7 +21,7 @@ export const CartClearButton = ({ cart, linesIds }: Props) => {
   const remove = useCallback(async () => {
     if (state.loading) return
 
-    setState((prev) => ({ ...prev, loading: true }))
+    setState(prev => ({ ...prev, loading: true }))
 
     try {
       const response = await removeCartLine(cart, linesIds)
@@ -32,7 +32,7 @@ export const CartClearButton = ({ cart, linesIds }: Props) => {
 
       console.log(error)
     } finally {
-      setState((prev) => ({ ...prev, loading: false }))
+      setState(prev => ({ ...prev, loading: false }))
     }
   }, [cart, state, linesIds])
 

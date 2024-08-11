@@ -21,9 +21,7 @@ export const OrderSummary = ({ cost }: Props) => {
 
           <div>
             <span>Discount</span>
-            <span>
-              ${+cost.subtotalAmount.amount - +cost.totalAmount.amount}
-            </span>
+            <span>${+cost.subtotalAmount.amount - +cost.totalAmount.amount}</span>
           </div>
         </div>
 
@@ -32,9 +30,7 @@ export const OrderSummary = ({ cost }: Props) => {
         <div className='space-y-2'>
           <div className='flex items-center justify-between text-black *:font-medium'>
             <span className='text-sm font-semibold'>Order total</span>
-            <span className='text-base font-extrabold'>
-              ${(+cost.totalAmount.amount).toFixed(2)}
-            </span>
+            <span className='text-base font-extrabold'>${(+cost.totalAmount.amount).toFixed(2)}</span>
           </div>
 
           <Link href='/checkout'>

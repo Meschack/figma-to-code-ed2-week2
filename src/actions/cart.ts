@@ -111,9 +111,7 @@ export const addToCart = async (variant: string) => {
   try {
     const cartId = cookies().get('cart')
 
-    const response = await (cartId
-      ? addLine(cartId.value, variant)
-      : create(variant))
+    const response = await (cartId ? addLine(cartId.value, variant) : create(variant))
 
     return response
   } catch (error) {
@@ -124,11 +122,7 @@ export const addToCart = async (variant: string) => {
 
 export const create = async (variant: string) => {
   try {
-    const response = await request<MinimalCart<'cartCreate'>>(
-      BASE_URL,
-      CREATE_CART,
-      { variant }
-    )
+    const response = await request<MinimalCart<'cartCreate'>>(BASE_URL, CREATE_CART, { variant })
 
     const oneWeek = 7 * 24 * 60 * 60 * 1000
 
@@ -136,11 +130,7 @@ export const create = async (variant: string) => {
       expires: Date.now() + oneWeek
     })
 
-    cookies().set(
-      'cart-quantity',
-      response.cartCreate.cart.totalQuantity.toString(),
-      { expires: Date.now() + oneWeek }
-    )
+    cookies().set('cart-quantity', response.cartCreate.cart.totalQuantity.toString(), { expires: Date.now() + oneWeek })
 
     revalidatePath('/', 'layout')
 
@@ -162,11 +152,7 @@ export const get = async (id: string) => {
   }
 }
 
-export const updateLineQuantity = async (
-  cart: string,
-  line: string,
-  quantity: number
-) => {
+export const updateLineQuantity = async (cart: string, line: string, quantity: number) => {
   if (quantity > 0) {
     try {
       const data = await request<{
@@ -181,10 +167,7 @@ export const updateLineQuantity = async (
       })
 
       if (!data.cartLinesUpdate.userErrors.length) {
-        cookies().set(
-          'cart-quantity',
-          data.cartLinesUpdate.cart.totalQuantity.toString()
-        )
+        cookies().set('cart-quantity', data.cartLinesUpdate.cart.totalQuantity.toString())
 
         revalidatePath('/cart')
 
@@ -201,11 +184,7 @@ export const updateLineQuantity = async (
 
 export const addLine = async (cart: string, variant: string) => {
   try {
-    const response = await request<MinimalCart<'cartLinesAdd'>>(
-      BASE_URL,
-      ADD_LINE,
-      { variant, cart }
-    )
+    const response = await request<MinimalCart<'cartLinesAdd'>>(BASE_URL, ADD_LINE, { variant, cart })
 
     const oneWeek = 7 * 24 * 60 * 60 * 1000
 
@@ -213,11 +192,9 @@ export const addLine = async (cart: string, variant: string) => {
       expires: Date.now() + oneWeek
     })
 
-    cookies().set(
-      'cart-quantity',
-      response.cartLinesAdd.cart.totalQuantity.toString(),
-      { expires: Date.now() + oneWeek }
-    )
+    cookies().set('cart-quantity', response.cartLinesAdd.cart.totalQuantity.toString(), {
+      expires: Date.now() + oneWeek
+    })
 
     revalidatePath('/', 'layout')
 
@@ -239,10 +216,7 @@ export const removeCartLine = async (cart: string, lines: string[]) => {
 
     if (!data.cartLinesRemove.userErrors.length) {
       revalidatePath('/cart')
-      cookies().set(
-        'cart-quantity',
-        data.cartLinesRemove.cart.totalQuantity.toString()
-      )
+      cookies().set('cart-quantity', data.cartLinesRemove.cart.totalQuantity.toString())
       revalidatePath('/', 'layout')
     }
 

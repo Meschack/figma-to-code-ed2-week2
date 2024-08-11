@@ -23,7 +23,7 @@ export const RelatedProducts = ({ product }: Props) => {
 
   const getRelatedProducts = async () => {
     if (error) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         loading: true,
         error: false
@@ -33,13 +33,13 @@ export const RelatedProducts = ({ product }: Props) => {
     try {
       const response = await getRecommendations(product)
 
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         products: response.productRecommendations,
         loading: false
       }))
     } catch (error) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         loading: false,
         error: true
@@ -64,13 +64,8 @@ export const RelatedProducts = ({ product }: Props) => {
   if (error) {
     return (
       <div className='flex flex-col gap-1 lg:flex-row'>
-        <p>
-          Une erreur est survenue lors de la récupération des recommandations !
-        </p>
-        <button
-          className='w-fit font-medium underline-offset-4 hover:underline'
-          onClick={getRelatedProducts}
-        >
+        <p>Une erreur est survenue lors de la récupération des recommandations !</p>
+        <button className='w-fit font-medium underline-offset-4 hover:underline' onClick={getRelatedProducts}>
           Relancer
         </button>
       </div>
@@ -80,7 +75,7 @@ export const RelatedProducts = ({ product }: Props) => {
   return (
     products && (
       <div className='no-scrollbar flex flex-col gap-3.5 sm:flex-row sm:overflow-x-auto sm:overflow-y-hidden'>
-        {products.map((product) => (
+        {products.map(product => (
           <ProductCard product={product} key={product.id} />
         ))}
       </div>

@@ -9,9 +9,7 @@ const badgeVariants = cva('rounded-full px-3.5 py-2 uppercase', {
   defaultVariants: { variant: 'default' }
 })
 
-interface Props
-  extends ComponentProps<'div'>,
-    VariantProps<typeof badgeVariants> {}
+interface Props extends ComponentProps<'div'>, VariantProps<typeof badgeVariants> {}
 
 export const PromoBadge = ({ variant, className, ...rest }: Props) => {
   return (

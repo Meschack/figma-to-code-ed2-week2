@@ -37,10 +37,7 @@ const getProducts = async () => {
         }
       }
     `
-    const response: ProductsResponse = await request(
-      'https://mock.shop/api',
-      query
-    )
+    const response: ProductsResponse = await request('https://mock.shop/api', query)
 
     return response
   } catch (error) {
@@ -64,22 +61,20 @@ export default async function Home() {
 
       <Wrapper className='mb-24 space-y-18'>
         <p className='w-full text-center font-chillax text-xl font-semibold md:text-2xl xl:text-3xl'>
-          Discover the latest trends in summer fashion. Shop now and refresh
-          your wardrobe with our stylish summer shirts.
+          Discover the latest trends in summer fashion. Shop now and refresh your wardrobe with our stylish summer
+          shirts.
         </p>
 
         <div className='space-y-9'>
           <div className='flex flex-wrap items-center gap-3.5 md:justify-center'>
-            {categories.map((category) => (
+            {categories.map(category => (
               <Button
                 key={category.label}
                 variant={category.selected ? 'fill' : 'transparent'}
                 className='items-center gap-1 border-1.5 font-semibold'
               >
                 <span className='text-sm md:text-xl'>{category.label}</span>
-                <span className='text-xs md:text-base'>
-                  {category.quantity}
-                </span>
+                <span className='text-xs md:text-base'>{category.quantity}</span>
               </Button>
             ))}
           </div>
@@ -90,7 +85,7 @@ export default async function Home() {
                 <div className='mx-auto flex w-fit items-center gap-5'></div>
 
                 <div className='grid gap-3.5 md:grid-cols-2 xl:grid-cols-3'>
-                  {products.products.edges.map((edge) => (
+                  {products.products.edges.map(edge => (
                     <ProductCard key={edge.node.id} product={edge.node} />
                   ))}
                 </div>

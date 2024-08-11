@@ -8,13 +8,10 @@ export const OurCollection = ({}: Props) => {
   return (
     <div className='space-y-9'>
       <div className='space-y-1'>
-        <h2 className='mx-auto text-center font-chillax text-4xl font-semibold uppercase'>
-          Our Collection
-        </h2>
+        <h2 className='mx-auto text-center font-chillax text-4xl font-semibold uppercase'>Our Collection</h2>
 
         <p className='text-center text-lg font-medium text-dark-gray'>
-          Our latest collection, where classic and contemporary styles converge
-          in perfect harmony.
+          Our latest collection, where classic and contemporary styles converge in perfect harmony.
         </p>
       </div>
 
@@ -31,9 +28,7 @@ export const OurCollection = ({}: Props) => {
               Classic men
             </p>
 
-            <p className='text-sm text-white xl:text-lg'>
-              We're changing the way things get made.
-            </p>
+            <p className='text-sm text-white xl:text-lg'>We're changing the way things get made.</p>
           </div>
         </div>
       </div>

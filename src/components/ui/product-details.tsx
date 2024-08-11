@@ -26,16 +26,13 @@ export const ProductDetails = ({ product }: Props) => {
   })
 
   const onToggle = (name: string, value: string) => {
-    const newSelectedOptions = state.selectedOptions.map((option) =>
+    const newSelectedOptions = state.selectedOptions.map(option =>
       option.name === name ? { ...option, value } : option
     )
 
-    const variant = product.variants.edges.find((edge) =>
-      edge.node.selectedOptions.every((option) =>
-        newSelectedOptions.some(
-          (newOption) =>
-            newOption.name === option.name && newOption.value === option.value
-        )
+    const variant = product.variants.edges.find(edge =>
+      edge.node.selectedOptions.every(option =>
+        newSelectedOptions.some(newOption => newOption.name === option.name && newOption.value === option.value)
       )
     )
 
@@ -52,7 +49,7 @@ export const ProductDetails = ({ product }: Props) => {
       return
     }
 
-    setState((prev) => ({ ...prev, cartLoader: true }))
+    setState(prev => ({ ...prev, cartLoader: true }))
     try {
       await addToCart(variant)
 
@@ -60,7 +57,7 @@ export const ProductDetails = ({ product }: Props) => {
     } catch (error) {
       toast.error("Erreur lors de l'ajout du produit au panier !")
     } finally {
-      setState((prev) => ({ ...prev, cartLoader: false }))
+      setState(prev => ({ ...prev, cartLoader: false }))
     }
   }
 
@@ -68,16 +65,8 @@ export const ProductDetails = ({ product }: Props) => {
     <div className='grid gap-8 md:gap-10 xl:grid-cols-2'>
       <div className='relative min-h-[650px] overflow-hidden rounded-4xl xl:min-h-min'>
         <CustomImage
-          alt={
-            state.selectedVariant?.image?.url ||
-            product.featuredImage.altText ||
-            `${product.title} featured image`
-          }
-          src={
-            state.selectedVariant?.image
-              ? state.selectedVariant.image.url
-              : product.featuredImage.url
-          }
+          alt={state.selectedVariant?.image?.url || product.featuredImage.altText || `${product.title} featured image`}
+          src={state.selectedVariant?.image ? state.selectedVariant.image.url : product.featuredImage.url}
           fill
           priority
           className='object-cover object-center'
@@ -87,9 +76,7 @@ export const ProductDetails = ({ product }: Props) => {
       <div className='space-y-7'>
         <div className='space-y-5.5'>
           <div className='space-y-4.5'>
-            <h1 className='truncate font-chillax text-42 font-semibold'>
-              {product.title}
-            </h1>
+            <h1 className='truncate font-chillax text-42 font-semibold'>{product.title}</h1>
 
             <div>
               <span className='text-4xl font-semibold'>
@@ -99,26 +86,20 @@ export const ProductDetails = ({ product }: Props) => {
               </span>
             </div>
 
-            {product.options.toReversed().map((option) => (
+            {product.options.toReversed().map(option => (
               <div key={option.id} className='space-y-3.5'>
                 <h3 className='text-xl font-medium'>{option.name}</h3>
 
                 <div className='flex flex-wrap gap-3'>
-                  {option.values.map((value) => {
-                    const isSelected = state.selectedOptions.some(
-                      (el) => el.value === value && el.name === option.name
-                    )
+                  {option.values.map(value => {
+                    const isSelected = state.selectedOptions.some(el => el.value === value && el.name === option.name)
 
                     return (
                       <Button
                         variant={isSelected ? 'fill' : 'transparent'}
-                        className={cn(
-                          !isSelected && 'hover:bg-transparent hover:text-black'
-                        )}
+                        className={cn(!isSelected && 'hover:bg-transparent hover:text-black')}
                         key={value}
-                        onClick={() =>
-                          !isSelected && onToggle(option.name, value)
-                        }
+                        onClick={() => !isSelected && onToggle(option.name, value)}
                       >
                         {value}
                       </Button>

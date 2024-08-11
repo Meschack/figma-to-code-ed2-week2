@@ -49,15 +49,10 @@ export const Header = ({ className, ...rest }: Props) => {
           <div className='hidden items-center gap-4.5 xl:flex'>
             <nav>
               <ul className='flex items-center gap-4.5'>
-                {staticNavLinks.map((link) => (
+                {staticNavLinks.map(link => (
                   <li key={link.label}>
-                    <Link
-                      href={link.path}
-                      className='flex items-center gap-1.5'
-                    >
-                      {link.icon && (
-                        <Image src={link.icon} alt={link.label + ' icon'} />
-                      )}
+                    <Link href={link.path} className='flex items-center gap-1.5'>
+                      {link.icon && <Image src={link.icon} alt={link.label + ' icon'} />}
                       {link.label}
                     </Link>
                   </li>

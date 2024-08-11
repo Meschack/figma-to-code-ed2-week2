@@ -72,21 +72,11 @@ const Page = async () => {
 
               <p className='text-xs font-medium text-dark-gray'>
                 By placing your order, you agree to Ballamas{' '}
-                <a
-                  href='/privacy'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-black'
-                >
+                <a href='/privacy' target='_blank' rel='noopener noreferrer' className='text-black'>
                   Privacy
                 </a>{' '}
                 and{' '}
-                <a
-                  href='/policy'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-black'
-                >
+                <a href='/policy' target='_blank' rel='noopener noreferrer' className='text-black'>
                   Policy
                 </a>
                 .
@@ -96,10 +86,7 @@ const Page = async () => {
             <div className='grid gap-6'>
               <div className='space-y-5'>
                 {cart.lines.edges.map(({ node }) => (
-                  <div
-                    key={node.id}
-                    className='flex items-center justify-between'
-                  >
+                  <div key={node.id} className='flex items-center justify-between'>
                     <div className='col-span-2 flex items-center gap-2.5'>
                       <CustomImage
                         src={`${node.merchandise.image.url}`}
@@ -110,12 +97,10 @@ const Page = async () => {
                       />
 
                       <div className='flex flex-col gap-0.5'>
-                        <span className='text-sm font-semibold text-black'>
-                          {node.merchandise.product.title}
-                        </span>
+                        <span className='text-sm font-semibold text-black'>{node.merchandise.product.title}</span>
                         <span className='text-xs font-medium text-dark-gray'>
                           {node.merchandise.selectedOptions
-                            .map((option) => `${option.name}: ${option.value}`)
+                            .map(option => `${option.name}: ${option.value}`)
                             .join(' - ')}
                         </span>
                       </div>
@@ -123,10 +108,7 @@ const Page = async () => {
 
                     <div className='flex items-center justify-between'>
                       <span className='text-sm font-semibold text-black'>
-                        {/* prettier-ignore */}$
-                        {(
-                          +node.merchandise.price.amount * node.quantity
-                        ).toFixed(2)}
+                        ${(+node.merchandise.price.amount * node.quantity).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -137,7 +119,7 @@ const Page = async () => {
                 <div className='flex flex-col gap-1'>
                   <h2>Discount code</h2>
 
-                  <div className='md:max-w-100 flex w-full items-center gap-2'>
+                  <div className='flex w-full items-center gap-2 md:max-w-100'>
                     <Input placeholder='Add discount code' className='grow' />
 
                     <Button>Apply</Button>
@@ -157,19 +139,11 @@ const Page = async () => {
                 <div className='text-sm text-dark-gray'>
                   <div className='flex items-center justify-between'>
                     <span>Subtotal</span>
-                    <span>
-                      ${(+cart.cost.subtotalAmount.amount).toFixed(2)}
-                    </span>
+                    <span>${(+cart.cost.subtotalAmount.amount).toFixed(2)}</span>
                   </div>
                   <div className='flex items-center justify-between'>
                     <span>Discount</span>
-                    <span>
-                      $
-                      {(
-                        +cart.cost.subtotalAmount.amount -
-                        +cart.cost.totalAmount.amount
-                      ).toFixed(2)}
-                    </span>
+                    <span>${(+cart.cost.subtotalAmount.amount - +cart.cost.totalAmount.amount).toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -187,7 +161,7 @@ const Page = async () => {
             <h2>Shipping Method</h2>
 
             <form className='grid gap-3'>
-              {shippingMethods.map((method) => (
+              {shippingMethods.map(method => (
                 <div
                   key={method.value}
                   className='flex w-full items-center gap-3.5 rounded-xl border border-light-gray p-3 text-sm font-medium'
@@ -200,10 +174,7 @@ const Page = async () => {
                     defaultChecked={method.default}
                   />
 
-                  <label
-                    htmlFor={method.value}
-                    className='flex grow items-center justify-between'
-                  >
+                  <label htmlFor={method.value} className='flex grow items-center justify-between'>
                     <div className='grid gap-0.5'>
                       <h3>{method.title}</h3>
                       <span className='text-xs font-normal text-dark-gray'>
@@ -222,9 +193,7 @@ const Page = async () => {
         <div className='space-y-4 xl:col-span-5 xl:col-start-8'>
           <div className='space-y-1'>
             <h2>Payment details</h2>
-            <p className='text-xs text-dark-gray'>
-              Complete your purchase by providing your payment details.
-            </p>
+            <p className='text-xs text-dark-gray'>Complete your purchase by providing your payment details.</p>
           </div>
 
           <form className='grid space-y-5.5'>
@@ -233,12 +202,9 @@ const Page = async () => {
                 <h3 className='font-semibold'>Shipping address</h3>
 
                 <div className='grid gap-x-3.5 gap-y-2 md:grid-cols-2'>
-                  {adressFormFields.map((field) => (
+                  {adressFormFields.map(field => (
                     <div className='flex flex-col gap-2' key={field.name}>
-                      <label
-                        htmlFor={field.name}
-                        className='text-xs font-medium'
-                      >
+                      <label htmlFor={field.name} className='text-xs font-medium'>
                         {field.label}
                       </label>
                       <Input
@@ -300,10 +266,7 @@ const Page = async () => {
                         name='shipping-as-billing'
                       />
 
-                      <label
-                        htmlFor='shipping-as-billing'
-                        className='text-xs text-[#000000]'
-                      >
+                      <label htmlFor='shipping-as-billing' className='text-xs text-[#000000]'>
                         Use shipping address as billing address
                       </label>
                     </div>

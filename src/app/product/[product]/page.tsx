@@ -15,13 +15,7 @@ const Page = async ({ params }: Props) => {
   const response = await getProduct(decodeURIComponent(params.product))
 
   if (!response) {
-    return (
-      <ErrorComponent
-        description='Impossible de charger les détails de ce produit'
-        label='Réessayer'
-        to=''
-      />
-    )
+    return <ErrorComponent description='Impossible de charger les détails de ce produit' label='Réessayer' to='' />
   }
 
   return (
@@ -29,9 +23,7 @@ const Page = async ({ params }: Props) => {
       <ProductDetails product={response.product} />
 
       <div className='space-y-8'>
-        <h2 className='font-chillax text-4xl font-semibold'>
-          You may also like
-        </h2>
+        <h2 className='font-chillax text-4xl font-semibold'>You may also like</h2>
 
         <RelatedProducts product={response.product.id} />
       </div>

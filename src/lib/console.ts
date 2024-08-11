@@ -6,6 +6,6 @@ export const log = (message: any, ...other: any[]) => {
 
 export const logClientError = (error: ClientError) => {
   if (process.env.NODE_ENV !== 'production') {
-    console.log(error.response.errors?.map((error) => error.message).join('\n'))
+    console.log(error.response.errors?.map(error => error.message).join('\n'))
   }
 }
