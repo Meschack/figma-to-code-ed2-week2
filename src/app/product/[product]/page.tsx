@@ -24,8 +24,6 @@ const Page = async ({ params }: Props) => {
     )
   }
 
-  // console.log({ options: response.product.options.map((el) => el.values) })
-
   return (
     <Wrapper className='mb-24 space-y-18'>
       <ProductDetails product={response.product} />

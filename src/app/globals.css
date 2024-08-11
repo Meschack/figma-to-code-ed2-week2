@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply font-chillax text-2xl font-semibold text-black;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

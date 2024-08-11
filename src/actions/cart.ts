@@ -27,6 +27,7 @@ const GET_CART = gql`
                   url
                 }
                 selectedOptions {
+                  name
                   value
                 }
                 unitPrice {

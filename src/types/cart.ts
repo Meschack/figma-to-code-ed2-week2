@@ -26,6 +26,7 @@ export interface CartProductVariant {
 }
 
 interface Option {
+  name: string
   value: string
 }
 

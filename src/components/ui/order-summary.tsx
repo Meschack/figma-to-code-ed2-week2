@@ -1,6 +1,7 @@
 import { Cart } from '@/types/cart'
 import { Separator } from './separator'
 import { Button } from './button'
+import Link from 'next/link'
 
 interface Props {
   cost: Cart['cart']['cost']
@@ -21,7 +22,7 @@ export const OrderSummary = ({ cost }: Props) => {
           <div>
             <span>Discount</span>
             <span>
-              ${+cost.totalAmount.amount - +cost.subtotalAmount.amount}
+              ${+cost.subtotalAmount.amount - +cost.totalAmount.amount}
             </span>
           </div>
         </div>
@@ -36,7 +37,9 @@ export const OrderSummary = ({ cost }: Props) => {
             </span>
           </div>
 
-          <Button className='w-full'>Checkout now</Button>
+          <Link href='/checkout'>
+            <Button className='w-full'>Checkout now</Button>
+          </Link>
         </div>
       </div>
     </div>

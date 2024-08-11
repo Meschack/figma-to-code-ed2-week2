@@ -19,7 +19,12 @@ const config: Config = {
         'first-collection': "url('/images/first-collection.png')",
         'second-collection': "url('/images/second-collection.png')"
       },
-      maxWidth: { vw: '100vw', desktop: '1200px', tablet: '676px' },
+      maxWidth: {
+        vw: '100vw',
+        desktop: '1200px',
+        tablet: '676px',
+        100: '400px'
+      },
       spacing: { 4.5: '18px', 5.5: '22px', 13: '52px', 18: '72px' },
       borderRadius: { '4xl': '32px', 52: '52px' },
       colors: {
