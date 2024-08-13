@@ -8,6 +8,11 @@ import { Separator } from '@/components/ui/separator'
 import { CustomImage } from '@/components/ui/custom-image'
 import { ProductLineActions } from '@/components/ui/product-line-actions'
 import { CartClearButton } from '@/components/ui/cart-clear-button'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Ballamas | Cart'
+}
 
 const Page = async () => {
   try {

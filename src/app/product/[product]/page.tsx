@@ -4,8 +4,34 @@ import { ProductDetails } from '@/components/ui/product-details'
 import { RelatedProducts } from '@/components/ui/related-products'
 import { Wrapper } from '@/components/ui/wrapper'
 import { PageProps } from '@/types/page'
+import { Metadata } from 'next'
 
 interface Props extends PageProps<{}, { product: string | undefined }> {}
+
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  if (!params.product) {
+    return {
+      title: 'Ballamas | Product not found'
+    }
+  }
+
+  try {
+    const response = await getProduct(decodeURIComponent(params.product))
+
+    return {
+      title: 'Ballamas | ' + response.product.title,
+      description: response.product.description,
+      openGraph: {
+        images: response.product.variants.edges
+          .map(edge => edge.node.image?.url)
+          .filter(el => el !== undefined)
+      },
+      metadataBase: null
+    }
+  } catch (error) {
+    return {}
+  }
+}
 
 const Page = async ({ params }: Props) => {
   try {

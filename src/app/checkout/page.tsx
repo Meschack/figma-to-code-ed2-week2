@@ -7,6 +7,7 @@ import { cookies } from 'next/headers'
 import { ErrorComponent } from '@/components/ui/error'
 import { CustomImage } from '@/components/ui/custom-image'
 import { get } from '@/actions/cart'
+import { Metadata } from 'next'
 
 const shippingMethods = [
   {
@@ -43,6 +44,10 @@ const adressFormFields = [
   { label: 'Region', name: 'region' },
   { label: 'Postal code', name: 'postal-code' }
 ]
+
+export const metadata: Metadata = {
+  title: 'Ballamas | Checkout'
+}
 
 const Page = async () => {
   try {

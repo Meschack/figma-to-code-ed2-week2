@@ -1,5 +1,10 @@
 import { Wrapper } from '@/components/ui/wrapper'
 import { Icons } from '@/components/ui/icons'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Ballamas | Payment confirmation'
+}
 
 const Page = () => {
   return (
