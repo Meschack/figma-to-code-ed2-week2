@@ -1,7 +1,5 @@
 'use client'
 
-interface Props {}
-
-export const CartQuantityBadge = ({}: Props) => {
+export const CartQuantityBadge = () => {
   return <div></div>
 }

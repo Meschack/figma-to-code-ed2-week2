@@ -39,7 +39,18 @@ const config: Config = {
         black: '#1D1D1D'
       },
       borderWidth: { 1.5: '1.5px' },
-      gap: { 10.5: '42px' }
+      gap: { 10.5: '42px' },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'translate(1px)' }
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 300ms ease-in-out'
+      },
+      rotate: {
+        25: '25deg'
+      }
     }
   },
   plugins: [require('tailwindcss-animate')]

@@ -1,8 +1,38 @@
 'use server'
 
 import { BASE_URL } from '@/config/urls/api'
-import { Product, ProductResponse } from '@/types/products'
+import { Product, ProductResponse, ProductsResponse } from '@/types/products'
 import request, { gql } from 'graphql-request'
+
+const GET_PRODUCTS = gql`
+  {
+    products(first: 6) {
+      edges {
+        node {
+          id
+          title
+          description
+          featuredImage {
+            id
+            url
+            altText
+          }
+          isGiftCard
+          variants(first: 3) {
+            edges {
+              node {
+                price {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 const GET_PRODUCT_DETAILS = gql`
   query getProduct($id: ID!) {
@@ -71,6 +101,16 @@ const GET_PRODUCT_RECOMMANDATIONS = gql`
     }
   }
 `
+
+export const getProducts = async () => {
+  try {
+    const response: ProductsResponse = await request('https://mock.shop/api', GET_PRODUCTS)
+
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export const getProduct = async (id: string) => {
   try {

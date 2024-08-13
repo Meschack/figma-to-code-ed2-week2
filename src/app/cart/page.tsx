@@ -10,82 +10,101 @@ import { ProductLineActions } from '@/components/ui/product-line-actions'
 import { CartClearButton } from '@/components/ui/cart-clear-button'
 
 const Page = async () => {
-  const cartId = cookies().get('cart')?.value
+  try {
+    const cartId = cookies().get('cart')?.value
 
-  if (!cartId) {
+    if (!cartId) {
+      return (
+        <ErrorComponent
+          className='mb-24'
+          title='Empty cart'
+          description='Any product have been found in your cart. Please, add products in your cart and come back !'
+          label='Find products'
+        />
+      )
+    }
+
+    const { cart } = await get(cartId)
+
     return (
-      <ErrorComponent
-        title='Panier vide'
-        description="Aucun produit n'a été retrouvé dans votre panier. Rajoutez-en et revenez !"
-        label='Retrouver des produits'
-      />
-    )
-  }
+      <Wrapper className='mb-16 grid w-full grid-cols-4 gap-10.5 md:grid-cols-8 xl:mb-28 xl:grid-cols-12'>
+        <div className='col-span-full xl:col-span-9'>
+          <div className='flex items-center justify-between'>
+            <h1 className='font-chillax text-2xl font-semibold'>
+              Cart ({cart.lines.edges.length})
+            </h1>
 
-  const { cart } = await get(cartId)
-
-  return (
-    <Wrapper className='mb-16 grid w-full grid-cols-4 gap-10.5 md:grid-cols-8 xl:mb-28 xl:grid-cols-12'>
-      <div className='col-span-full xl:col-span-9'>
-        <div className='flex items-center justify-between'>
-          <h1 className='font-chillax text-2xl font-semibold'>Cart ({cart.lines.edges.length})</h1>
-
-          <CartClearButton cart={cart.id} linesIds={cart.lines.edges.map(edge => edge.node.id)} />
-        </div>
-
-        <div role='table' className='space-y-5'>
-          <div className='grid grid-cols-3 border-b border-light-gray py-3 text-dark-gray'>
-            <div className='col-span-2'>
-              <span>Product</span>
-            </div>
-
-            <div className='flex justify-between pe-6'>
-              <span>Quantity</span>
-              <span>Price</span>
-            </div>
+            <CartClearButton cart={cart.id} linesIds={cart.lines.edges.map(edge => edge.node.id)} />
           </div>
 
-          <div className='space-y-5'>
-            {cart.lines.edges.map(({ node }) => (
-              <div className='space-y-5' key={node.id}>
-                <div className='grid grid-cols-3'>
-                  <div className='col-span-2 flex items-center gap-2.5'>
-                    <CustomImage
-                      src={`${node.merchandise.image.url}&width=72`}
-                      alt='Merchandise image'
-                      width={72}
-                      height={72}
-                      className='aspect-square rounded-lg object-cover'
-                    />
+          <div role='table' className='space-y-5'>
+            <div className='grid grid-cols-3 border-b border-light-gray py-3 text-dark-gray'>
+              <div className='col-span-2'>
+                <span>Product</span>
+              </div>
 
-                    <div className='flex flex-col gap-0.5'>
-                      <span className='text-sm font-semibold text-black'>{node.merchandise.product.title}</span>
-                      <span className='text-xs font-medium text-dark-gray'>
-                        {node.merchandise.selectedOptions.map(option => option.value).join(' - ')}
+              <div className='flex justify-between pe-6'>
+                <span>Quantity</span>
+                <span>Price</span>
+              </div>
+            </div>
+
+            <div className='space-y-5'>
+              {cart.lines.edges.map(({ node }) => (
+                <div className='space-y-5' key={node.id}>
+                  <div className='grid grid-cols-3'>
+                    <div className='col-span-2 flex items-center gap-2.5'>
+                      <CustomImage
+                        src={`${node.merchandise.image.url}&width=72`}
+                        alt='Merchandise image'
+                        width={72}
+                        height={72}
+                        className='aspect-square rounded-lg object-cover'
+                      />
+
+                      <div className='flex flex-col gap-0.5'>
+                        <span className='text-sm font-semibold text-black'>
+                          {node.merchandise.product.title}
+                        </span>
+                        <span className='text-xs font-medium text-dark-gray'>
+                          {node.merchandise.selectedOptions.map(option => option.value).join(' - ')}
+                        </span>
+                        <span className='text-sm font-semibold text-black'>
+                          ${node.merchandise.price.amount}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className='flex items-center justify-between'>
+                      <ProductLineActions node={node} cart={cart.id} />
+
+                      <span className='text-sm font-semibold text-black'>
+                        ${(+node.merchandise.price.amount * node.quantity).toFixed(2)}
                       </span>
-                      <span className='text-sm font-semibold text-black'>${node.merchandise.price.amount}</span>
                     </div>
                   </div>
 
-                  <div className='flex items-center justify-between'>
-                    <ProductLineActions node={node} cart={cart.id} />
-
-                    <span className='text-sm font-semibold text-black'>
-                      ${(+node.merchandise.price.amount * node.quantity).toFixed(2)}
-                    </span>
-                  </div>
+                  <Separator />
                 </div>
-
-                <Separator />
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <OrderSummary cost={cart.cost} />
-    </Wrapper>
-  )
+        <OrderSummary cost={cart.cost} />
+      </Wrapper>
+    )
+  } catch (error) {
+    return (
+      <ErrorComponent
+        className='mb-24'
+        title='An error occured'
+        description="We're not able to load your cart right now. Try again !"
+        label='Retry'
+        to=''
+      />
+    )
+  }
 }
 
 export default Page

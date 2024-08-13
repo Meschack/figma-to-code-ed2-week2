@@ -130,7 +130,9 @@ export const create = async (variant: string) => {
       expires: Date.now() + oneWeek
     })
 
-    cookies().set('cart-quantity', response.cartCreate.cart.totalQuantity.toString(), { expires: Date.now() + oneWeek })
+    cookies().set('cart-quantity', response.cartCreate.cart.totalQuantity.toString(), {
+      expires: Date.now() + oneWeek
+    })
 
     revalidatePath('/', 'layout')
 
@@ -184,7 +186,10 @@ export const updateLineQuantity = async (cart: string, line: string, quantity: n
 
 export const addLine = async (cart: string, variant: string) => {
   try {
-    const response = await request<MinimalCart<'cartLinesAdd'>>(BASE_URL, ADD_LINE, { variant, cart })
+    const response = await request<MinimalCart<'cartLinesAdd'>>(BASE_URL, ADD_LINE, {
+      variant,
+      cart
+    })
 
     const oneWeek = 7 * 24 * 60 * 60 * 1000
 

@@ -1,49 +1,9 @@
+import { getProducts } from '@/actions/products'
 import { Button } from '@/components/ui/button'
 import { HomeBanner } from '@/components/ui/home-banner'
 import { OurCollection } from '@/components/ui/our-collection'
 import { ProductCard } from '@/components/ui/product-card'
 import { Wrapper } from '@/components/ui/wrapper'
-import { ProductsResponse } from '@/types/products'
-import { request, gql } from 'graphql-request'
-
-const getProducts = async () => {
-  try {
-    const query = gql`
-      {
-        products(first: 6) {
-          edges {
-            node {
-              id
-              title
-              description
-              featuredImage {
-                id
-                url
-                altText
-              }
-              isGiftCard
-              variants(first: 3) {
-                edges {
-                  node {
-                    price {
-                      amount
-                      currencyCode
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `
-    const response: ProductsResponse = await request('https://mock.shop/api', query)
-
-    return response
-  } catch (error) {
-    console.log(error)
-  }
-}
 
 const categories = [
   { label: 'All', quantity: 132, selected: true },
@@ -61,8 +21,8 @@ export default async function Home() {
 
       <Wrapper className='mb-24 space-y-18'>
         <p className='w-full text-center font-chillax text-xl font-semibold md:text-2xl xl:text-3xl'>
-          Discover the latest trends in summer fashion. Shop now and refresh your wardrobe with our stylish summer
-          shirts.
+          Discover the latest trends in summer fashion. Shop now and refresh your wardrobe with our
+          stylish summer shirts.
         </p>
 
         <div className='space-y-9'>
@@ -79,7 +39,7 @@ export default async function Home() {
             ))}
           </div>
 
-          <div className='space-y-8'>
+          <div className='space-y-8 xl:mx-24'>
             {products ? (
               <div className='space-y-4'>
                 <div className='mx-auto flex w-fit items-center gap-5'></div>

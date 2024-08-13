@@ -1,25 +1,23 @@
-import Image, { StaticImageData } from 'next/image'
 import { TrendingNews } from '@/components/ui/trending-news'
-import user from '@@/icons/user.svg'
-import search from '@@/icons/search.svg'
-import cart from '@@/icons/cart-2.svg'
 import Link from 'next/link'
 import { Wrapper } from '@/components/ui/wrapper'
 import { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 import { Logo } from './logo'
 import { cookies } from 'next/headers'
+import { MobileMenu } from './mobile-menu'
+import { Icons } from './icons'
 
 interface NavLink {
   path: string
   label: string
-  icon?: StaticImageData
+  icon?: React.FC
 }
 
 const staticNavLinks: NavLink[] = [
   { path: '/shop', label: 'Shop' },
   { path: '/about', label: 'About Us' },
-  { path: '/account', label: 'Account', icon: user }
+  { path: '/account', label: 'Account', icon: Icons.user }
 ]
 
 interface Props extends ComponentProps<'header'> {}
@@ -28,9 +26,10 @@ export const Header = ({ className, ...rest }: Props) => {
   const cartQuantity = cookies().get('cart-quantity')?.value
 
   return (
-    <header className={cn(className)} {...rest}>
+    <header className={cn('group sticky top-0 z-10', className)} {...rest}>
       <TrendingNews />
-      <div className=''>
+
+      <div className='bg-white'>
         <Wrapper className='flex items-center justify-between border-b border-light-gray py-5'>
           <ul className='hidden items-center gap-4.5 xl:flex'>
             <li>Men</li>
@@ -39,10 +38,7 @@ export const Header = ({ className, ...rest }: Props) => {
             <li>Collection</li>
           </ul>
 
-          <button className='flex flex-col gap-1 xl:hidden'>
-            <span className='h-0.5 w-5 bg-black'></span>
-            <span className='h-0.5 w-5 bg-black'></span>
-          </button>
+          <MobileMenu />
 
           <Logo />
 
@@ -52,7 +48,7 @@ export const Header = ({ className, ...rest }: Props) => {
                 {staticNavLinks.map(link => (
                   <li key={link.label}>
                     <Link href={link.path} className='flex items-center gap-1.5'>
-                      {link.icon && <Image src={link.icon} alt={link.label + ' icon'} />}
+                      {link.icon && <link.icon />}
                       {link.label}
                     </Link>
                   </li>
@@ -66,15 +62,45 @@ export const Header = ({ className, ...rest }: Props) => {
             </nav>
 
             <div>
-              <Image src={search} alt='Search icon' />
+              <Icons.search />
             </div>
           </div>
 
           <div className='flex items-center gap-3 xl:hidden'>
-            <Image src={search} alt='Search icon' />
-            <Image src={cart} alt='Cart icon' />
+            <Icons.search color='black' />
+
+            <Link href='/cart'>
+              <Icons.cartTwo color='black' />
+            </Link>
           </div>
         </Wrapper>
+      </div>
+
+      <div className='sticky hidden h-lvh flex-col items-center gap-11 bg-white pt-6 group-has-[:checked]:flex xl:!hidden'>
+        <nav>
+          <ul className='space-y-11 *:flex *:flex-col *:items-center *:gap-4.5'>
+            <div>
+              <li>Men</li>
+              <li>Women</li>
+              <li>Kids</li>
+              <li>Collection</li>
+
+              {staticNavLinks.map(link => (
+                <li key={link.label}>
+                  <Link href={link.path} className='flex items-center gap-1.5'>
+                    {link.icon && <link.icon />}
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </div>
+
+            <div>
+              <li>FAQ</li>
+              <li>Contact Us</li>
+            </div>
+          </ul>
+        </nav>
       </div>
     </header>
   )
