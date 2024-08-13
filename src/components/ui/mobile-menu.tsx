@@ -14,12 +14,12 @@ export const MobileMenu = () => {
         <button className='relative flex flex-col items-center justify-center gap-1 xl:hidden'>
           <span
             className={cn(
-              'group-has-[:checked]:rotate-25 h-0.5 w-5 bg-black transition-all duration-300 group-has-[:checked]:absolute'
+              'h-0.5 w-5 bg-black transition-all duration-300 group-has-[:checked]:absolute group-has-[:checked]:rotate-25'
             )}
           ></span>
           <span
             className={cn(
-              'group-has-[:checked]:-rotate-25 h-0.5 w-5 bg-black transition-all duration-300 group-has-[:checked]:absolute'
+              'h-0.5 w-5 bg-black transition-all duration-300 group-has-[:checked]:absolute group-has-[:checked]:-rotate-25'
             )}
           ></span>
         </button>

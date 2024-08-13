@@ -53,7 +53,9 @@ export const Footer = () => {
                 className='max-w-80 flex-1 rounded-full border bg-transparent px-3.5 py-3 text-xs text-white'
               />
 
-              <button className='rounded-full bg-white px-5 py-3 text-sm text-black'>Subscribe</button>
+              <button className='rounded-full bg-white px-5 py-3 text-sm text-black'>
+                Subscribe
+              </button>
             </div>
           </div>
 
@@ -76,7 +78,10 @@ export const Footer = () => {
 
         <p className='mx-auto w-fit text-dark-gray'>
           &copy; BALLAMAS 2024 by{' '}
-          <Link className='underline underline-offset-4' href='https://www.linkedin.com/in/waris-akinocho/'>
+          <Link
+            className='underline underline-offset-4'
+            href='https://www.linkedin.com/in/waris-akinocho/'
+          >
             waris
           </Link>
         </p>

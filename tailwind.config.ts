@@ -25,7 +25,7 @@ const config: Config = {
         tablet: '676px',
         100: '400px'
       },
-      spacing: { 4.5: '18px', 5.5: '22px', 13: '52px', 18: '72px' },
+      spacing: { 4.5: '18px', 5.5: '22px', 13: '52px', 18: '72px', 'px/2': '0.5px' },
       borderRadius: { '4xl': '32px', 52: '52px' },
       colors: {
         'light-gray': '#E5E5E5',
@@ -50,7 +50,8 @@ const config: Config = {
       },
       rotate: {
         25: '25deg'
-      }
+      },
+      height: { 'collection-height': '446px' }
     }
   },
   plugins: [require('tailwindcss-animate')]

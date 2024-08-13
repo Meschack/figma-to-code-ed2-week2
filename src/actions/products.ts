@@ -104,7 +104,7 @@ const GET_PRODUCT_RECOMMANDATIONS = gql`
 
 export const getProducts = async () => {
   try {
-    const response: ProductsResponse = await request('https://mock.shop/api', GET_PRODUCTS)
+    const response: ProductsResponse = await request(BASE_URL, GET_PRODUCTS)
 
     return response
   } catch (error) {
@@ -127,13 +127,18 @@ export const getProduct = async (id: string) => {
 
 export const getRecommendations = async (productId: string) => {
   try {
-    const data = await request<{ productRecommendations: Product[] }>(BASE_URL, GET_PRODUCT_RECOMMANDATIONS, {
-      id: productId
-    })
+    const data = await request<{ productRecommendations: Product[] }>(
+      BASE_URL,
+      GET_PRODUCT_RECOMMANDATIONS,
+      {
+        id: productId
+      }
+    )
 
     return data
   } catch (error) {
-    if (error instanceof Error) console.error('Error fetching product recommendations :', error.message)
+    if (error instanceof Error)
+      console.error('Error fetching product recommendations :', error.message)
 
     throw error
   }

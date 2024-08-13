@@ -10,7 +10,14 @@ interface Props extends PageProps<{}, { product: string | undefined }> {}
 const Page = async ({ params }: Props) => {
   try {
     if (!params.product) {
-      throw new Error('Aucun produit sélectionné !')
+      return (
+        <ErrorComponent
+          className='mb-24'
+          title='Product not found'
+          description='Please, select a product to continue !'
+          label='Find products'
+        />
+      )
     }
 
     const response = await getProduct(decodeURIComponent(params.product))
@@ -18,8 +25,9 @@ const Page = async ({ params }: Props) => {
     if (!response) {
       return (
         <ErrorComponent
-          description='Impossible de charger les détails de ce produit'
-          label='Réessayer'
+          className='mb-24'
+          description="We're not able to load this product's details right now. Please, try again !"
+          label='Retry'
           to=''
         />
       )
@@ -39,8 +47,9 @@ const Page = async ({ params }: Props) => {
   } catch (error) {
     return (
       <ErrorComponent
-        description='Impossible de charger les détails de ce produit'
-        label='Réessayer'
+        className='mb-24'
+        description="We're not able to load this product's details right now. Please, try again !"
+        label='Retry'
         to=''
       />
     )

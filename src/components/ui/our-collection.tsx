@@ -14,11 +14,13 @@ export const OurCollection = () => {
         </p>
       </div>
 
-      <div className='flex flex-col-reverse gap-4 *:h-[446px] *:rounded-4xl *:bg-dark-gray *:bg-cover *:bg-center md:flex-row md:*:basis-1/2 xl:mx-24'>
-        <div className='flex items-end justify-center bg-first-collection pb-6 xl:basis-1/3'>
-          <Button className='bg-white uppercase text-black'>
-            Learn More <Icons.arrow />
-          </Button>
+      <div className='flex flex-col-reverse gap-4 *:h-collection-height *:rounded-4xl *:bg-dark-gray *:bg-cover *:bg-center md:flex-row md:*:basis-1/2 xl:mx-24'>
+        <div className='overflow-hidden bg-first-collection xl:basis-1/3'>
+          <div className='flex size-full flex-col items-center justify-end bg-pure-black/15 pb-6'>
+            <Button className='bg-white uppercase text-black'>
+              Learn More <Icons.arrow />
+            </Button>
+          </div>
         </div>
 
         <div className='overflow-hidden bg-second-collection xl:basis-2/3'>

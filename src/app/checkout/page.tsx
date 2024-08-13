@@ -46,7 +46,7 @@ const adressFormFields = [
 
 const Page = async () => {
   try {
-    const cartId = cookies().get('cartd')?.value
+    const cartId = cookies().get('cart')?.value
 
     if (!cartId) {
       return (
@@ -99,13 +99,14 @@ const Page = async () => {
                   {cart.lines.edges.map(({ node }) => (
                     <div key={node.id} className='flex items-center justify-between'>
                       <div className='col-span-2 flex items-center gap-2.5'>
-                        <CustomImage
-                          src={`${node.merchandise.image.url}`}
-                          alt='Merchandise image'
-                          width={72}
-                          height={72}
-                          className='aspect-square size-11 rounded-lg object-cover md:size-18'
-                        />
+                        <div className='relative size-11 md:size-18'>
+                          <CustomImage
+                            src={`${node.merchandise.image.url}`}
+                            alt='Merchandise image'
+                            fill
+                            className='rounded-lg object-cover'
+                          />
+                        </div>
 
                         <div className='flex flex-col gap-0.5'>
                           <span className='text-sm font-semibold text-black'>

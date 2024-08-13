@@ -1,10 +1,10 @@
 'use client'
 
-import { Trash } from '../icons/trash'
 import { removeCartLine } from '@/actions/cart'
 import { useCallback, useState } from 'react'
 import { toast } from 'sonner'
-import { GlobalLoader } from './global-loader'
+import { Overlay } from './overlay'
+import { Icons } from './icons'
 
 interface Props {
   cart: string
@@ -26,9 +26,9 @@ export const CartClearButton = ({ cart, linesIds }: Props) => {
     try {
       const response = await removeCartLine(cart, linesIds)
 
-      if (!response?.success) toast.error('Une erreur est survenue !')
+      if (!response?.success) toast.error('An error occured !')
     } catch (error) {
-      toast.error('Une erreur est survenue !')
+      toast.error('An error occured !')
 
       console.log(error)
     } finally {
@@ -41,14 +41,14 @@ export const CartClearButton = ({ cart, linesIds }: Props) => {
       <button
         disabled={state.loading}
         onClick={remove}
-        className='inline-flex items-center space-x-1 rounded-full bg-[#E5E5E5]/50 p-2 text-dark-gray'
+        className='flex items-center space-x-1 rounded-full bg-light-gray/50 p-2 text-dark-gray'
       >
-        <Trash className='*:text-dark-gray' />
+        <Icons.trash width={14} height={14} />
 
-        <span>Clear Cart</span>
+        <span className='text-xs font-medium'>Clear Cart</span>
       </button>
 
-      {state.loading && <GlobalLoader />}
+      {state.loading && <Overlay />}
     </>
   )
 }

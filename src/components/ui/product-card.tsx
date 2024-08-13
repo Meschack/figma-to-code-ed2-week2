@@ -12,8 +12,8 @@ interface Props {
 
 export const ProductCard = ({ product }: Props) => {
   return (
-    <div className='space-y-4'>
-      <div className='group relative aspect-[322.67/405] min-h-[405px] overflow-hidden rounded-4xl'>
+    <div className='w-[322.67px] space-y-4'>
+      <div className='group relative aspect-[322.67/405] h-[405px] overflow-hidden rounded-4xl'>
         <CustomImage
           priority
           fill
@@ -46,7 +46,7 @@ export const ProductCard = ({ product }: Props) => {
       </div>
 
       <div className='space-y-0.5 font-semibold'>
-        <h3 className='truncate text-3xl uppercase text-black'>{product.title}</h3>
+        <h3 className='truncate text-2xl uppercase text-black md:text-3xl'>{product.title}</h3>
 
         <span className='text-28 leading-9 text-dark-gray'>
           {product.variants.edges[0].node.price.currencyCode}{' '}

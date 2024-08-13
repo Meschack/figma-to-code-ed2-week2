@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { addToCart } from '@/actions/cart'
 import { toast } from 'sonner'
 import { LoadingButton } from './loading-button'
+import { ColorOptions } from './color-options'
 
 interface Props {
   product: Product
@@ -32,7 +33,9 @@ export const ProductDetails = ({ product }: Props) => {
 
     const variant = product.variants.edges.find(edge =>
       edge.node.selectedOptions.every(option =>
-        newSelectedOptions.some(newOption => newOption.name === option.name && newOption.value === option.value)
+        newSelectedOptions.some(
+          newOption => newOption.name === option.name && newOption.value === option.value
+        )
       )
     )
 
@@ -44,7 +47,7 @@ export const ProductDetails = ({ product }: Props) => {
 
   const addVariantToCart = async (variant: string | undefined) => {
     if (!variant) {
-      toast.warning('Veuillez sélectionnez une variante valide !')
+      toast.warning('Please, select a valid variant !')
 
       return
     }
@@ -53,9 +56,9 @@ export const ProductDetails = ({ product }: Props) => {
     try {
       await addToCart(variant)
 
-      toast.success('Le produit a bien été ajouté au panier !')
+      toast.success('The product has been successfully added to the cart !')
     } catch (error) {
-      toast.error("Erreur lors de l'ajout du produit au panier !")
+      toast.error('Error while adding the product to the cart !')
     } finally {
       setState(prev => ({ ...prev, cartLoader: false }))
     }
@@ -65,8 +68,16 @@ export const ProductDetails = ({ product }: Props) => {
     <div className='grid gap-8 md:gap-10 xl:grid-cols-2'>
       <div className='relative min-h-[650px] overflow-hidden rounded-4xl xl:min-h-min'>
         <CustomImage
-          alt={state.selectedVariant?.image?.url || product.featuredImage.altText || `${product.title} featured image`}
-          src={state.selectedVariant?.image ? state.selectedVariant.image.url : product.featuredImage.url}
+          alt={
+            state.selectedVariant?.image?.url ||
+            product.featuredImage.altText ||
+            `${product.title} featured image`
+          }
+          src={
+            state.selectedVariant?.image
+              ? state.selectedVariant.image.url
+              : product.featuredImage.url
+          }
           fill
           priority
           className='object-cover object-center'
@@ -86,28 +97,39 @@ export const ProductDetails = ({ product }: Props) => {
               </span>
             </div>
 
-            {product.options.toReversed().map(option => (
-              <div key={option.id} className='space-y-3.5'>
-                <h3 className='text-xl font-medium'>{option.name}</h3>
+            {product.options.toReversed().map(option =>
+              option.name.toLowerCase() === 'color' ? (
+                <ColorOptions
+                  key={option.id}
+                  option={option}
+                  onToggle={onToggle}
+                  selectedOptions={state.selectedOptions}
+                />
+              ) : (
+                <div key={option.id} className='space-y-3.5'>
+                  <h3 className='text-xl font-medium'>{option.name}</h3>
 
-                <div className='flex flex-wrap gap-3'>
-                  {option.values.map(value => {
-                    const isSelected = state.selectedOptions.some(el => el.value === value && el.name === option.name)
+                  <div className='flex flex-wrap gap-3'>
+                    {option.values.map(value => {
+                      const isSelected = state.selectedOptions.some(
+                        el => el.value === value && el.name === option.name
+                      )
 
-                    return (
-                      <Button
-                        variant={isSelected ? 'fill' : 'transparent'}
-                        className={cn(!isSelected && 'hover:bg-transparent hover:text-black')}
-                        key={value}
-                        onClick={() => !isSelected && onToggle(option.name, value)}
-                      >
-                        {value}
-                      </Button>
-                    )
-                  })}
+                      return (
+                        <Button
+                          variant={isSelected ? 'fill' : 'transparent'}
+                          className={cn(!isSelected && 'hover:bg-transparent hover:text-black')}
+                          key={value}
+                          onClick={() => !isSelected && onToggle(option.name, value)}
+                        >
+                          {value}
+                        </Button>
+                      )
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
 
           {/* // TODO: Product options */}
@@ -116,7 +138,7 @@ export const ProductDetails = ({ product }: Props) => {
             <Button disabled={!state.selectedVariant}>Buy now</Button>
 
             <LoadingButton
-              loading={!state.selectedVariant}
+              loading={!!state.cartLoader}
               disabled={!state.selectedVariant || state.cartLoader}
               variant='transparent'
               onClick={() => addVariantToCart(state.selectedVariant?.id)}

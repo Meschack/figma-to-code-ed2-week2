@@ -64,8 +64,11 @@ export const RelatedProducts = ({ product }: Props) => {
   if (error) {
     return (
       <div className='flex flex-col gap-1 lg:flex-row'>
-        <p>Une erreur est survenue lors de la récupération des recommandations !</p>
-        <button className='w-fit font-medium underline-offset-4 hover:underline' onClick={getRelatedProducts}>
+        <p>An error occured lors de la récupération des recommandations !</p>
+        <button
+          className='w-fit font-medium underline-offset-4 hover:underline'
+          onClick={getRelatedProducts}
+        >
           Relancer
         </button>
       </div>

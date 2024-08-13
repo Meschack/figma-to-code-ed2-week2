@@ -38,44 +38,45 @@ const Page = async () => {
           </div>
 
           <div role='table' className='space-y-5'>
-            <div className='grid grid-cols-3 border-b border-light-gray py-3 text-dark-gray'>
-              <div className='col-span-2'>
+            <div className='grid grid-cols-2 border-b border-light-gray py-3 text-dark-gray xl:grid-cols-3'>
+              <div className='xl:col-span-2'>
                 <span>Product</span>
               </div>
 
-              <div className='flex justify-between pe-6'>
+              <div className='flex justify-between'>
                 <span>Quantity</span>
-                <span>Price</span>
+                <span className='text-end'>Price</span>
               </div>
             </div>
 
             <div className='space-y-5'>
               {cart.lines.edges.map(({ node }) => (
                 <div className='space-y-5' key={node.id}>
-                  <div className='grid grid-cols-3'>
-                    <div className='col-span-2 flex items-center gap-2.5'>
-                      <CustomImage
-                        src={`${node.merchandise.image.url}&width=72`}
-                        alt='Merchandise image'
-                        width={72}
-                        height={72}
-                        className='aspect-square rounded-lg object-cover'
-                      />
+                  <div className='flex items-center justify-between gap-2'>
+                    <div className='flex basis-1/2 items-center gap-2.5 xl:basis-2/3'>
+                      <div className='relative size-11 md:size-18'>
+                        <CustomImage
+                          src={`${node.merchandise.image.url}`}
+                          alt='Merchandise image'
+                          className='aspect-square rounded-lg object-cover'
+                          fill
+                        />
+                      </div>
 
-                      <div className='flex flex-col gap-0.5'>
-                        <span className='text-sm font-semibold text-black'>
+                      <div className='flex flex-col gap-0.5 text-tiny'>
+                        <span className='truncate font-semibold text-black md:text-sm'>
                           {node.merchandise.product.title}
                         </span>
-                        <span className='text-xs font-medium text-dark-gray'>
+                        <span className='font-medium text-dark-gray md:text-xs'>
                           {node.merchandise.selectedOptions.map(option => option.value).join(' - ')}
                         </span>
-                        <span className='text-sm font-semibold text-black'>
+                        <span className='font-bold text-black md:text-xs xl:font-semibold'>
                           ${node.merchandise.price.amount}
                         </span>
                       </div>
                     </div>
 
-                    <div className='flex items-center justify-between'>
+                    <div className='flex basis-1/2 items-center justify-between gap-2 xl:basis-1/3'>
                       <ProductLineActions node={node} cart={cart.id} />
 
                       <span className='text-sm font-semibold text-black'>
