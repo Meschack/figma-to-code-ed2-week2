@@ -3,8 +3,8 @@
 import { getRecommendations } from '@/actions/products'
 import { Product } from '@/types/products'
 import { useEffect, useState } from 'react'
-import { ProductCard } from './product-card'
-import { ProductCardLoader } from './product-card-loader'
+import { ProductCard } from '@/components/product/product-card'
+import { ProductCardLoader } from '@/components/product/product-card-loader'
 
 interface Props {
   product: string

@@ -1,8 +1,8 @@
 import { getProduct } from '@/actions/products'
-import { ErrorComponent } from '@/components/ui/error'
-import { ProductDetails } from '@/components/ui/product-details'
-import { RelatedProducts } from '@/components/ui/related-products'
-import { Wrapper } from '@/components/ui/wrapper'
+import { ErrorComponent } from '@/components/common/error'
+import { ProductDetails } from '@/components/product/product-details'
+import { RelatedProducts } from '@/components/product/related-products'
+import { Wrapper } from '@/components/layout/wrapper'
 import { PageProps } from '@/types/page'
 import { Metadata } from 'next'
 

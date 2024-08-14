@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import notFound from '@@/icons/not-found.svg'
-import { Wrapper } from './wrapper'
+import { Wrapper } from '../layout/wrapper'
 import { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 

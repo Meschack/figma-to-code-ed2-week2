@@ -1,13 +1,14 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Separator } from '@/components/ui/separator'
-import { Wrapper } from '@/components/ui/wrapper'
-import { Icons } from '@/components/ui/icons'
+import { Button } from '@/components/common/button'
+import { Input } from '@/components/common/input'
+import { Separator } from '@/components/common/separator'
+import { Wrapper } from '@/components/layout/wrapper'
+import { Icons } from '@/components/common/icons'
 import { cookies } from 'next/headers'
-import { ErrorComponent } from '@/components/ui/error'
-import { CustomImage } from '@/components/ui/custom-image'
+import { ErrorComponent } from '@/components/common/error'
+import { CustomImage } from '@/components/common/custom-image'
 import { get } from '@/actions/cart'
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 const shippingMethods = [
   {
@@ -304,10 +305,12 @@ const Page = async () => {
                 </div>
               </div>
 
-              <Button className='mx-auto flex w-full md:w-1/2'>
-                <span>Pay ${cart.cost.totalAmount.amount}</span>
-                <Icons.arrowRight />
-              </Button>
+              <Link href='/payment-confirmation' className='mx-auto block w-full md:w-1/2'>
+                <Button className='flex w-full'>
+                  <span>Pay ${cart.cost.totalAmount.amount}</span>
+                  <Icons.arrowRight />
+                </Button>
+              </Link>
             </form>
           </div>
         </div>

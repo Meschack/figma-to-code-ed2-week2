@@ -1,10 +1,9 @@
 import { Product } from '@/types/products'
-import { PromoBadge } from './promo-badge'
-
-import { Button } from './button'
+import { PromoBadge } from '@/components/common/promo-badge'
+import { Button } from '@/components/common/button'
 import Link from 'next/link'
-import { CustomImage } from './custom-image'
-import { Icons } from './icons'
+import { CustomImage } from '@/components/common/custom-image'
+import { Icons } from '@/components/common/icons'
 
 interface Props {
   product: Product

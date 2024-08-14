@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
-import { Button } from './button'
+import { Button } from '@/components/common/button'
 import { cn } from '@/lib/utils'
-import { Icons } from './icons'
+import { Icons } from '@/components/common/icons'
 
 interface Props extends ComponentProps<typeof Button> {
   loading: boolean

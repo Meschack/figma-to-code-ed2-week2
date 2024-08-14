@@ -1,13 +1,13 @@
 import { get } from '@/actions/cart'
-import { ErrorComponent } from '@/components/ui/error'
-import { OrderSummary } from '@/components/ui/order-summary'
-import { Wrapper } from '@/components/ui/wrapper'
+import { ErrorComponent } from '@/components/common/error'
+import { OrderSummary } from '@/components/cart/order-summary'
+import { Wrapper } from '@/components/layout/wrapper'
 import { cookies } from 'next/headers'
 
-import { Separator } from '@/components/ui/separator'
-import { CustomImage } from '@/components/ui/custom-image'
-import { ProductLineActions } from '@/components/ui/product-line-actions'
-import { CartClearButton } from '@/components/ui/cart-clear-button'
+import { Separator } from '@/components/common/separator'
+import { CustomImage } from '@/components/common/custom-image'
+import { ProductLineActions } from '@/components/product/product-line-actions'
+import { CartClearButton } from '@/components/cart/cart-clear-button'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

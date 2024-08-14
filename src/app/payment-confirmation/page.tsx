@@ -1,5 +1,5 @@
-import { Wrapper } from '@/components/ui/wrapper'
-import { Icons } from '@/components/ui/icons'
+import { Wrapper } from '@/components/layout/wrapper'
+import { Icons } from '@/components/common/icons'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

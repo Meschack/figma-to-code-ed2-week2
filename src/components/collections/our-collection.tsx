@@ -1,5 +1,5 @@
-import { Button } from './button'
-import { Icons } from './icons'
+import { Button } from '@/components/common/button'
+import { Icons } from '@/components/common/icons'
 
 export const OurCollection = () => {
   return (

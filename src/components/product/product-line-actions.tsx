@@ -4,8 +4,8 @@ import { CartProductVariant } from '@/types/cart'
 import { removeCartLine, updateLineQuantity } from '@/actions/cart'
 import { useCallback, useState } from 'react'
 import { toast } from 'sonner'
-import { Overlay } from './overlay'
-import { Icons } from './icons'
+import { Overlay } from '@/components/common/overlay'
+import { Icons } from '@/components/common/icons'
 
 interface Props {
   cart: string

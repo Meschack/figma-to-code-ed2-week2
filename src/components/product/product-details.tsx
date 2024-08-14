@@ -1,14 +1,14 @@
 'use client'
 
 import { Product } from '@/types/products'
-import { Button } from './button'
-import { CustomImage } from './custom-image'
+import { Button } from '@/components/common/button'
+import { CustomImage } from '@/components/common/custom-image'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { addToCart } from '@/actions/cart'
 import { toast } from 'sonner'
-import { LoadingButton } from './loading-button'
-import { ColorOptions } from './color-options'
+import { LoadingButton } from '@/components/common/loading-button'
+import { ColorOptions } from '@/components/product/color-options'
 
 interface Props {
   product: Product

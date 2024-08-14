@@ -1,8 +1,8 @@
 import { getCollections } from '@/actions/collections'
-import { Collections } from '@/components/ui/collections'
-import { HomeBanner } from '@/components/ui/home-banner'
-import { OurCollection } from '@/components/ui/our-collection'
-import { Wrapper } from '@/components/ui/wrapper'
+import { Collections } from '@/components/collections/collections'
+import { HomeBanner } from '@/components/home-banner'
+import { OurCollection } from '@/components/collections/our-collection'
+import { Wrapper } from '@/components/layout/wrapper'
 
 export default async function Home() {
   const { collections } = await getCollections()

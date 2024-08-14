@@ -1,4 +1,4 @@
-import { Product } from './products'
+import { Product } from '@/types/products'
 
 export interface Collections {
   collections: {

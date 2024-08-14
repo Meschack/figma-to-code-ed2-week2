@@ -1,12 +1,12 @@
-import { TrendingNews } from '@/components/ui/trending-news'
+import { TrendingNews } from '@/components/layout/trending-news'
 import Link from 'next/link'
-import { Wrapper } from '@/components/ui/wrapper'
+import { Wrapper } from '@/components/layout/wrapper'
 import { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
-import { Logo } from './logo'
+import { Logo } from '@/components/common/logo'
 import { cookies } from 'next/headers'
-import { MobileMenu } from './mobile-menu'
-import { Icons } from './icons'
+import { MobileMenu } from '@/components/layout/mobile-menu'
+import { Icons } from '@/components/common/icons'
 
 interface NavLink {
   path: string

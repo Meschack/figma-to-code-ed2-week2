@@ -1,4 +1,4 @@
-import { ErrorComponent } from '@/components/ui/error'
+import { ErrorComponent } from '@/components/common/error'
 
 const NotFound = () => <ErrorComponent />
 

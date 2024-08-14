@@ -1,8 +1,8 @@
-import { Button } from './button'
-import { Wrapper } from './wrapper'
+import { Button } from '@/components/common/button'
+import { Wrapper } from '@/components/layout/wrapper'
 import { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
-import { Icons } from './icons'
+import { Icons } from '@/components/common/icons'
 
 interface Props extends ComponentProps<typeof Wrapper> {}
 

@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { Wrapper } from '@/components/ui/wrapper'
-import { Logo } from '@/components/ui/logo'
+import { Wrapper } from '@/components/layout/wrapper'
+import { Logo } from '@/components/common/logo'
 
 const quickLinks = [
   {

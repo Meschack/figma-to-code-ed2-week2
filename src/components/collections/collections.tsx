@@ -1,8 +1,8 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Button } from './button'
-import { ProductCard } from './product-card'
+import { Button } from '@/components/common/button'
+import { ProductCard } from '../product/product-card'
 import { Collections as CollectionsType } from '@/types/collections'
 
 interface Props {

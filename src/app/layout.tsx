@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { archivo, chillax } from '@/config/fonts'
-import { Footer } from '@/components/ui/footer'
-import { Header } from '@/components/ui/header'
+import { Footer } from '@/components/layout/footer'
+import { Header } from '@/components/layout/header'
 import { Toaster } from 'sonner'
 
 const baseUrl = process.env.APP_URL

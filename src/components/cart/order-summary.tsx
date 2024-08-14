@@ -1,6 +1,6 @@
 import { Cart } from '@/types/cart'
-import { Separator } from './separator'
-import { Button } from './button'
+import { Separator } from '@/components/common/separator'
+import { Button } from '@/components/common/button'
 import Link from 'next/link'
 
 interface Props {
