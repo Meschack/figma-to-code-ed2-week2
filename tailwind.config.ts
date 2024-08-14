@@ -25,7 +25,7 @@ const config: Config = {
         tablet: '676px',
         100: '400px'
       },
-      spacing: { 4.5: '18px', 5.5: '22px', 13: '52px', 18: '72px', 'px/2': '0.5px' },
+      spacing: { 4.5: '18px', 5.5: '22px', 13: '52px', 18: '72px', 'px/2': '0.5px', 75: '300px' },
       borderRadius: { '4xl': '32px', 52: '52px' },
       colors: {
         'light-gray': '#E5E5E5',
@@ -43,10 +43,16 @@ const config: Config = {
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'translate(1px)' }
+        },
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)'
+          }
         }
       },
       animation: {
-        wiggle: 'wiggle 300ms ease-in-out'
+        wiggle: 'wiggle 300ms ease-in-out',
+        shimmer: 'shimmer 2s infinite'
       },
       rotate: {
         25: '25deg'

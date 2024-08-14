@@ -1,19 +1,11 @@
-import { getProducts } from '@/actions/products'
-import { Button } from '@/components/ui/button'
+import { getCollections } from '@/actions/collections'
+import { Collections } from '@/components/ui/collections'
 import { HomeBanner } from '@/components/ui/home-banner'
 import { OurCollection } from '@/components/ui/our-collection'
-import { ProductCard } from '@/components/ui/product-card'
 import { Wrapper } from '@/components/ui/wrapper'
 
-const categories = [
-  { label: 'All', quantity: 132, selected: true },
-  { label: 'Accessories', quantity: 13, selected: false },
-  { label: 'Featured', quantity: 67, selected: false },
-  { label: 'Unisex', quantity: 52, selected: false }
-]
-
 export default async function Home() {
-  const products = await getProducts()
+  const { collections } = await getCollections()
 
   return (
     <>
@@ -25,38 +17,7 @@ export default async function Home() {
           stylish summer shirts.
         </p>
 
-        <div className='space-y-9'>
-          <div className='flex flex-wrap items-center gap-3.5 md:justify-center'>
-            {categories.map(category => (
-              <Button
-                key={category.label}
-                variant={category.selected ? 'fill' : 'transparent'}
-                className='items-center gap-1 border-1.5 font-semibold'
-              >
-                <span className='text-sm md:text-xl'>{category.label}</span>
-                <span className='text-xs md:text-base'>{category.quantity}</span>
-              </Button>
-            ))}
-          </div>
-
-          <div className='space-y-8 xl:mx-24'>
-            {products ? (
-              <div className='space-y-4'>
-                <div className='mx-auto flex w-fit items-center gap-5'></div>
-
-                <div className='grid gap-3.5 md:grid-cols-2 xl:grid-cols-3'>
-                  {products.products.edges.map(edge => (
-                    <ProductCard key={edge.node.id} product={edge.node} />
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            <Button className='mx-auto block' variant='transparent'>
-              Voir plus
-            </Button>
-          </div>
-        </div>
+        <Collections collections={collections} />
 
         <OurCollection />
       </Wrapper>

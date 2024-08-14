@@ -49,6 +49,7 @@ export interface Product {
   featuredImage: FeaturedImage
   isGiftCard: boolean
   options: ProductOption[]
+  priceRange: { minVariantPrice: Price; maxVariantPrice: Price }
   variants: { edges: Array<{ node: ProductVariant }> }
 }
 

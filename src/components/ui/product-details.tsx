@@ -66,7 +66,7 @@ export const ProductDetails = ({ product }: Props) => {
 
   return (
     <div className='grid gap-8 md:gap-10 xl:grid-cols-2'>
-      <div className='relative min-h-[650px] overflow-hidden rounded-4xl xl:min-h-min'>
+      <div className='relative min-h-[600px] overflow-hidden rounded-4xl'>
         <CustomImage
           alt={
             state.selectedVariant?.image?.url ||
@@ -97,7 +97,7 @@ export const ProductDetails = ({ product }: Props) => {
               </span>
             </div>
 
-            {product.options.toReversed().map(option =>
+            {product.options?.toReversed().map(option =>
               option.name.toLowerCase() === 'color' ? (
                 <ColorOptions
                   key={option.id}

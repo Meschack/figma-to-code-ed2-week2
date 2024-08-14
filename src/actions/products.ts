@@ -17,17 +17,13 @@ const GET_PRODUCTS = gql`
             url
             altText
           }
-          isGiftCard
-          variants(first: 3) {
-            edges {
-              node {
-                price {
-                  amount
-                  currencyCode
-                }
-              }
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
             }
           }
+          isGiftCard
         }
       }
     }
@@ -88,14 +84,10 @@ const GET_PRODUCT_RECOMMANDATIONS = gql`
         altText
       }
       isGiftCard
-      variants(first: 3) {
-        edges {
-          node {
-            price {
-              amount
-              currencyCode
-            }
-          }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
         }
       }
     }

@@ -62,9 +62,9 @@ export const Footer = () => {
           <div className='flex gap-13'>
             {quickLinks.map(element => (
               <div className='space-y-2' key={element.title}>
-                <h3 className='text-base text-white'>{element.title}</h3>
+                <h3 className='text-xs text-white md:text-base'>{element.title}</h3>
 
-                <div className='flex flex-col gap-1 text-sm text-gray'>
+                <div className='flex flex-col gap-1 text-tiny text-gray md:text-sm'>
                   {element.links.map((link, index) => (
                     <Link key={`${element.title}-${link.path}-${index}`} href={link.path}>
                       {link.label}
