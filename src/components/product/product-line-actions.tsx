@@ -31,8 +31,6 @@ export const ProductLineActions = ({ node, cart }: Props) => {
         if (!response?.success) toast.error('An error occured !', { id: 'cart-product-line' })
       } catch (error) {
         toast.error('An error occured !', { id: 'cart-product-line' })
-
-        console.log(error)
       } finally {
         setState(prev => ({ ...prev, loading: false }))
       }
@@ -51,8 +49,6 @@ export const ProductLineActions = ({ node, cart }: Props) => {
       if (!response?.success) toast.error('An error occured !', { id: 'cart-product-line' })
     } catch (error) {
       toast.error('An error occured !', { id: 'cart-product-line' })
-
-      console.log(error)
     } finally {
       setState(prev => ({ ...prev, loading: false }))
     }

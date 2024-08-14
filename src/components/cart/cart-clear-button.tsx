@@ -29,8 +29,6 @@ export const CartClearButton = ({ cart, linesIds }: Props) => {
       if (!response?.success) toast.error('An error occured !')
     } catch (error) {
       toast.error('An error occured !')
-
-      console.log(error)
     } finally {
       setState(prev => ({ ...prev, loading: false }))
     }

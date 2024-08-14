@@ -25,7 +25,7 @@ export const OurCollection = () => {
 
         <div className='overflow-hidden bg-second-collection xl:basis-2/3'>
           <div className='flex h-full w-full flex-col items-center justify-center bg-pure-black/20 *:w-fit'>
-            <p className='special-text text-center text-xl font-extrabold uppercase text-transparent md:text-3xl xl:text-5xl'>
+            <p className='special-text text-center font-chillax text-3xl font-extrabold uppercase text-transparent xl:text-5xl'>
               Classic men
             </p>
 

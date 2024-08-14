@@ -6,7 +6,7 @@ interface Props extends ComponentPropsWithoutRef<'div'> {}
 export const Wrapper = ({ className, children, ...rest }: Props) => (
   <div
     className={cn(
-      'mx-auto w-full max-w-[calc(100vw-40px)] md:max-w-tablet xl:max-w-desktop',
+      'mx-auto w-full max-w-[calc(100vw-40px)] overflow-x-hidden md:max-w-tablet xl:max-w-desktop',
       className
     )}
     {...rest}

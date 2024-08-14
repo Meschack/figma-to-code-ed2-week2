@@ -47,8 +47,6 @@ export const getCollections = async () => {
 
     const response: Collections = await request(BASE_URL, query)
 
-    console.log(response)
-
     return response
   } catch (error) {
     if (error instanceof ClientError) logClientError(error)

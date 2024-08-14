@@ -17,11 +17,11 @@ export const HomeBanner = ({ className, ...rest }: Props) => {
     >
       <div className='flex w-fit flex-col items-center gap-4.5'>
         <div className='flex items-center gap-3'>
-          <div className='h-px/2 w-16 bg-white'></div>
+          <div className='h-px/2 w-full min-w-10 max-w-16 bg-white'></div>
           <span className='whitespace-nowrap text-xs md:text-sm'>
             We bring new fashion to the world
           </span>
-          <div className='h-px/2 w-16 bg-white'></div>
+          <div className='h-px/2 w-full min-w-10 max-w-16 bg-white'></div>
         </div>
 
         <div className='flex flex-col items-center gap-4'>

@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${archivo.variable} ${chillax.variable} flex min-h-screen flex-col overflow-x-hidden font-sans`}
+        className={`${archivo.variable} ${chillax.variable} flex min-h-screen w-screen flex-col overflow-x-hidden font-sans`}
       >
         <Header />
 
